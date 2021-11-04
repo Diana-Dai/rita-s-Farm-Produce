@@ -267,9 +267,9 @@
                 {% assign subCategoriesList = link.url | split: '/' %}
                 {% assign subCategoriesTag = subCategoriesList[2] %}
                 {%- comment -%} if there're nested links{%- endcomment -%}
-                {% if currentLinks.links != blank %}
+                {% if link.links != blank %}
                   <div class="product-tiles">
-                    <h2> {{ collection.title }} </h2>
+                    <h2> {{ collections[subCategoriesTag].title }} </h2>
                     <div id={{subCategoriesTag}} class="product-listings-view__subcategory-anchor">
                     </div>
                     {% for sub_link in currentLinks.links %}
