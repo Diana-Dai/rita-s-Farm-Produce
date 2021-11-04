@@ -193,7 +193,7 @@
             {% endif %}
 
             {% if have_sidebar %}
-              <nav class="sidebar {{ grid_item_width }} grid__item--{{ section.id }}">
+              <nav class="sidebar desktop-only {{ grid_item_width }} grid__item--{{ section.id }}">
                 <ul class="tags tags--vertical">
                   {% if linklists.main-menu.levels > 0 %}
                     {% for link in linklists.main-menu.links %}
