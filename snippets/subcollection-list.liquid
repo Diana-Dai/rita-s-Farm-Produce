@@ -23,7 +23,7 @@
           {% for sub_sub_link in sub_link.links %}
             <li>
               {% assign anchorlist = sub_sub_link.url | split: '/' %}
-              {% assign anchorpoint = achorlist[2] %}
+              {{anchorlist}}
               <a class="collapse-link" href="#{{ anchorpoint }}">{{ sub_sub_link.title }}</a>
             </li>
           {% endfor %}

@@ -272,7 +272,7 @@
                     <h2> {{ collections[subCategoriesTag].title }} </h2>
                     <div id={{subCategoriesTag}} class="product-listings-view__subcategory-anchor">
                     </div>
-                    {% for sub_link in currentLinks.links %}
+                    {% for sub_link in link.links %}
                       <div class="section-page"> 
                         {% assign sub_subCategoriesList = sub_link.url | split: '/' %}
                         {% assign sub_subCategoriesTag = sub_subCategoriesList[2] %}
