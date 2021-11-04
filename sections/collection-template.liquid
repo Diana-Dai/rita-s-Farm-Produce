@@ -221,7 +221,7 @@
                   {% endif %}
                 </ul>
 
-                {%- assign show_button_limit = tag_limit | minus: 1  -%}
+                <!-- {%- assign show_button_limit = tag_limit | minus: 1  -%}
                 {% if tag_count > show_button_limit %}
                   <p>
                     <button type="button" class="collapsible-trigger collapsible--auto-height collapsible-trigger-btn btn btn--tertiary tags-toggle" aria-controls="TagList-{{ section.id }}">
@@ -229,7 +229,7 @@
                       <span class="collapsible-label__open">{{ 'collections.general.see_less' | t }}</span>
                     </button>
                   </p>
-                {% endif %}
+                {% endif %} -->
               </nav>
             {% endif %}
           {% endif %}
