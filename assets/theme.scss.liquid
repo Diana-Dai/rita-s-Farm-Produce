@@ -10456,10 +10456,9 @@ iframe.zoid-component-frame {
   position: relative;
   top: -87px;
 }
-#CollectionAjaxContent .tags--vertical{
-  margin: 1rem 0;
+#CollectionAjaxContent .tags a{
+  font-size: .94118em;
 }
-
 #CollectionAjaxContent .products-container{
   display: flex;
   flex-wrap: wrap;
@@ -10473,8 +10472,15 @@ iframe.zoid-component-frame {
 }
 #CollectionAjaxContent .sidebar{
   min-width: 200px;
+  width:auto;
   white-space: nowrap;
-  padding-left:30px;
+}
+#CollectionAjaxContent .sidebar .tags--vertical{
+  margin: 0 30px;
+}
+#CollectionAjaxContent .sidebar .collapse > ul{
+  margin: 10px 0;
+  font-size: 0.9em;
 }
 #CollectionAjaxContent .sidebar .collapse li{
   margin-bottom: 0;
@@ -10496,7 +10502,7 @@ iframe.zoid-component-frame {
   padding-left: 14px;
   border-left: 4px solid #d5d4d0;
 }
-#CollectionAjaxContent .sidebar a.active{
+#CollectionAjaxContent .sidebar a.active:not(.collapse-link){
   font-weight: bold;
 }
 #CollectionAjaxContent .sidebar a ~ .collapse{
