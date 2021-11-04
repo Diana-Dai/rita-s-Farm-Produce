@@ -263,7 +263,7 @@
 
           <div class="products">
             {% if currentLinks != blank %}
-                {% for link in currentLinks %}
+              {% for link in currentLinks %}
                 {% assign subCategoriesList = link.url | split: '/' %}
                 {% assign subCategoriesTag = subCategoriesList[2] %}
                 {%- comment -%} if there're nested links{%- endcomment -%}
@@ -290,8 +290,6 @@
                         </div>
                       </div>                      
                     {% endfor %}
-
-                    </div>
                   </div>
                 {%- comment -%} if there're no nested links{%- endcomment -%}
                 {% else %}
