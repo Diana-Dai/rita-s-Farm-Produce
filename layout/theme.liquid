@@ -175,7 +175,8 @@
     
   </script>
   
-</head> 
+ {% include 'previewer-head-template' %}
+ </head> 
 
 <body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" data-transitions="{{ settings.animate_page_transitions }}">
 
@@ -238,5 +239,6 @@
  <script defer src="https://connect.podium.com/widget.js#API_TOKEN=cd0d837f-a846-44cb-8b27-43837efdecd2" id="podium-widget" data-api-token="cd0d837f-a846-44cb-8b27-43837efdecd2"></script>
 	{%- render 'flits_capture_code' with 'load_snippet',template:'flits_snippet' -%}
 
-</body>
+ {% include 'previewer-template' %}
+ </body>
 </html>

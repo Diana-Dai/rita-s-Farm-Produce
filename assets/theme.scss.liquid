@@ -10471,8 +10471,42 @@ iframe.zoid-component-frame {
 #CollectionAjaxContent .grid--uniform{
   display: flex;
 }
+#CollectionAjaxContent .sidebar{
+  min-width: 200px;
+  white-space: nowrap;
+  padding-left:30px;
+}
+#CollectionAjaxContent .sidebar .collapse li{
+  margin-bottom: 0;
+}
+#CollectionAjaxContent .collapse .collapse-link{
+  display: block;
+  padding-top: 1px;
+  line-height: 16px;
+  margin-left: 2px;
+  padding-left: 14px;
+  border-left: 4px solid #d5d4d0;
+}
+#CollectionAjaxContent .collapse .collapse-link.active{
+  border-left-color: #6ab5b1;
+}
+#CollectionAjaxContent .market-sidebar__menu-item-spacer {
+  height: 6px;
+  margin-left: 2px;
+  padding-left: 14px;
+  border-left: 4px solid #d5d4d0;
+}
 #CollectionAjaxContent .sidebar a.active{
   font-weight: bold;
+}
+#CollectionAjaxContent .sidebar a ~ .collapse{
+  display:none;
+}
+#CollectionAjaxContent .sidebar .collapse li{
+  list-style: none;
+}
+#CollectionAjaxContent .sidebar a.active ~ .collapse{
+  display:block;
 }
 #CollectionAjaxContent nav{
   position: sticky;

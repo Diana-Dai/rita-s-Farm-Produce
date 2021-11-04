@@ -220,7 +220,7 @@
             {% endif %}
 
             {% if have_sidebar %}
-              <nav class="grid__item sidebar {{ grid_item_width }} grid__item--{{ section.id }}">
+              <nav class="sidebar {{ grid_item_width }} grid__item--{{ section.id }}">
                 <ul class="tags tags--vertical">
                   {% if linklists.main-menu.levels > 0 %}
                     {% for link in linklists.main-menu.links %}
@@ -269,9 +269,9 @@
                 {%- comment -%} if there're nested links{%- endcomment -%}
                 {% if link.links != blank %}
                   <div class="product-tiles">
-                    <h2> {{ collections[subCategoriesTag].title }} </h2>
                     <div id={{subCategoriesTag}} class="product-listings-view__subcategory-anchor">
                     </div>
+                    <h2> {{ collections[subCategoriesTag].title }} </h2>
                     {% for sub_link in link.links %}
                       <div class="section-page"> 
                         {% assign sub_subCategoriesList = sub_link.url | split: '/' %}
@@ -356,14 +356,12 @@
     $(window).scroll(function () {
       var scrollTop = $(this).scrollTop();
       wacth($(".product-tiles"), $(".sidebar a"));
-      wacth($(".sub-content"), $(".collapse-link"));
+      wacth($(".section-page"), $(".collapse-link"));
       // Watch position
       function wacth(element, target) {
         element.each(function () {
           if ($(this).offset().top <= scrollTop + 100) {
             var id = $(this).children()[0].id;
-            console.log(id);
-
             target.each(function () {
               if ($(this).attr("href") === "#" + id) {
                 if (!$(this).hasClass("active")) {
