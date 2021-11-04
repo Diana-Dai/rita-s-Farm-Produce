@@ -12,14 +12,12 @@
 
   <li>
     {% assign sub_achorList = sub_link.url | split: '/' %}
-    {% if sub_link.links == blank %}
+    {% assign sub_achorPoint = sub_achorList[2] | strip %}
     <a href="#{{ sub_achorPoint }}" class="{% if forloop.first == true %}active{% endif %}">
       {{ sub_link.title }}
     </a>
-    {% else %}
-      <a href="#{{ sub_achorPoint }}-main" class="{% if forloop.first == true %}active{% endif %}">
-        {{ sub_link.title }}
-      </a>
+
+    {% if sub_link.links != blank %}
       <div class="collapse">
         <ul>
           {% for sub_sub_link in sub_link.links %}
