@@ -266,20 +266,47 @@
                 {% for link in currentLinks %}
                 {% assign subCategoriesList = link.url | split: '/' %}
                 {% assign subCategoriesTag = subCategoriesList[2] %}
+                {% if currentLinks.links != blank %}
+                  <div class="product-tiles">
+                    <h2> {{ collection.title }} </h2>
+                    <div id={{subCategoriesTag}} class="product-listings-view__subcategory-anchor">
+                    </div>
+                    {% for sub_link in currentLinks.links %}
+                      <div class="section-page"> 
+                        {% assign sub_subCategoriesList = sub_link.url | split: '/' %}
+                        {% assign sub_subCategoriesTag = sub_subCategoriesList[2] %}
+                        <div id={{sub_subCategoriesTag}} class="product-listings-view__subcategory-anchor">
+                        </div>
+                        <h3> {{ collections[sub_subCategoriesTag].title }}</h2>
+                        <div class="products-container">
+                          {% for product in collections[sub_subCategoriesTag].products %}
+                            {% include 'product-grid-item' %}
+                            {% else %}
+                              <div class="grid__item">
+                                <p>{{ 'collections.general.no_matches' | t }}</p>
+                              </div>
+                          {% endfor %}
+                        </div>
+                      </div>                      
+                    {% endfor %}
+
+                    </div>
+                  </div>
+                {% endif %}
                 <div class="product-tiles">
                   <div id={{subCategoriesTag}} class="product-listings-view__subcategory-anchor">
                   </div>
-                  <h2> {{ collections[subCategoriesTag].title }}</h2>
+                  <h3> {{ collections[subCategoriesTag].title }}</h2>
                   <div class="products-container">
-                {% for product in collections[subCategoriesTag].products %}
-                  {% include 'product-grid-item' %}
-                  {% else %}
-                    <div class="grid__item">
-                      <p>{{ 'collections.general.no_matches' | t }}</p>
-                    </div>
-                {% endfor %}
+                    {% for product in collections[subCategoriesTag].products %}
+                      {% include 'product-grid-item' %}
+                      {% else %}
+                        <div class="grid__item">
+                          <p>{{ 'collections.general.no_matches' | t }}</p>
+                        </div>
+                    {% endfor %}
+                  </div>
                 </div>
-              </div>
               {% endfor %}
             {% else %}
               <div class="products-container">
@@ -324,9 +351,7 @@
 
 <script defer>
   $(document).ready(function(){
-    $(window).scroll(function(){
-    });
-  
+
     $(window).scroll(function () {
       var scrollTop = $(this).scrollTop();
       wacth($(".product-tiles"), $(".sidebar a"));
