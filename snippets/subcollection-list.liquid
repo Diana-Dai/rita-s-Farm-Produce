@@ -1,0 +1,37 @@
+{% for sub_link in links %}
+  {% if sub_link.url == '#' %}{% continue %}{% endif %}
+
+  {%- assign tag_count = tag_count | plus: 1 -%}
+  {% if tag_count == tag_limit %}
+    {%- assign have_extra_tags = true -%}
+    </ul>
+    <div id="TagList-{{ section.id }}" class="collapsible-content collapsible-content--all">
+      <ul class="tags tags--vertical collapsible-content__inner collapsible-content__inner--no-translate">
+  {% endif %}
+
+
+  <li>
+    {% assign sub_achorList = sub_link.url | split: '/' %}
+    {% if sub_link.links == blank %}
+    <a href="#{{ sub_achorPoint }}" class="{% if forloop.first == true %}active{% endif %}">
+      {{ sub_link.title }}
+    </a>
+    {% else %}
+      <a href="#{{ sub_achorPoint }}-main" class="{% if forloop.first == true %}active{% endif %}">
+        {{ sub_link.title }}
+      </a>
+      <div class="collapse">
+        <ul>
+          {% for sub_sub_link in sub_link.links %}
+            <li>
+              {% assign anchorlist = sub_sub_link.url | split: '/' %}
+              {% assign anchorpoint = achorlist[2] %}
+              <a class="collapse-link" href="#{{ anchorpoint }}">{{ sub_sub_link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div> 
+    {% endif %}
+
+  </li>
+{% endfor %}
