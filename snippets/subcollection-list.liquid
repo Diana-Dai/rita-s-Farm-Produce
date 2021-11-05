@@ -11,7 +11,7 @@
   <li>
     {% assign sub_achorList = sub_link.url | split: '/' %}
     {% assign sub_achorPoint = sub_achorList[2] | strip %}
-    {{ sub_achorPoint }}
+    {{ sub_achorList }}
     <a href="#{{ sub_achorPoint }}" class="{% if forloop.first == true %}active{% endif %}">
       {{ sub_link.title }}
     </a>
