@@ -11,7 +11,6 @@
   <li>
     {% assign sub_achorList = sub_link.url | split: '/' %}
     {% assign sub_achorPoint = sub_achorList | last | strip %}
-    {{ sub_achorPoint }}
     <a href="#{{ sub_achorPoint }}" class="{% if forloop.first == true %}active{% endif %}">
       {{ sub_link.title }}
     </a>
@@ -23,7 +22,7 @@
             <li>
               {%- comment -%}Nested links{%- endcomment -%}
               {% assign sub_sub_anchorlist = sub_sub_link.url | split: '/' %}
-              {% assign sub_sub_anchorPoint = sub_sub_anchorlist[2] | strip %}
+              {% assign sub_sub_anchorPoint = sub_sub_anchorlist | last | strip %}
 
               <a class="collapse-link {% if forloop.index == 1 %}active{% endif %}" href="#{{ sub_sub_anchorPoint }}">{{ sub_sub_link.title }}</a>
               {% if forloop.last == false %}

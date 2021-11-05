@@ -238,7 +238,7 @@
             {% if currentLinks != blank %}
               {% for link in currentLinks %}
                 {% assign subCategoriesList = link.url | split: '/' %}
-                {% assign subCategoriesTag = subCategoriesList[2] %}
+                {% assign subCategoriesTag = subCategoriesList | last | strip %}
                 {%- comment -%} if there're nested links{%- endcomment -%}
                 {% if link.links != blank %}
                   <div class="product-tiles">
@@ -248,7 +248,7 @@
                     {% for sub_link in link.links %}
                       <div class="section-page"> 
                         {% assign sub_subCategoriesList = sub_link.url | split: '/' %}
-                        {% assign sub_subCategoriesTag = sub_subCategoriesList[2] %}
+                        {% assign sub_subCategoriesTag = sub_subCategoriesList| last | strip %}
                         <div id={{sub_subCategoriesTag}} class="product-listings-view__subcategory-anchor">
                         </div>
                         <h3> {{ collections[sub_subCategoriesTag].title }}</h2>
