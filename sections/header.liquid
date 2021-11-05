@@ -62,7 +62,6 @@
           {% if logo_alignment == 'left' and section.settings.menu_alignment == 'left' %}
             <div class="header-item header-item--navigation{% if section.settings.main_menu_alignment == 'left-center' %} text-center{% endif %}">
               {% include 'header-desktop-nav' %}
-              {% include 'header-mobile-nav' %}
             </div>
           {% endif %}
 
@@ -127,7 +126,6 @@
 
               {% if section.settings.main_menu_alignment == 'center-left' %}
                 {% include 'header-desktop-nav' %}
-                {% include 'header-mobile-nav' %}
               {% endif %}
             
           {% endif %}
@@ -171,11 +169,11 @@
           </div>
         {%- endif -%}
       </div>
+      {% include 'header-mobile-nav' %}
     </header>
     {% if section.settings.main_menu_alignment == 'center' %}
           <div class="text-center">
             {% include 'header-desktop-nav' %}
-            {% include 'header-mobile-nav' %}
           </div>
         {% endif %}
   </div>

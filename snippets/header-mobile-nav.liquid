@@ -77,6 +77,7 @@
     z-index: -1;
     background: #000;
     opacity: .5;
+    min-height: 100vh;
   }
   .mobile-local-navigation__category-flyout{
     border-radius: 3px;
@@ -116,12 +117,32 @@
     display: block;
   }
 </style>
+{% for link in main_menu.links %} {% if link.current == true %}
+{% if link.links != blank %}
+  {% assign showMobileNavigation = true %}
+
+  {% for childlink in link.links %}
+    {% if forloop.first %}
+      {% assign firstSubLinkTitle = childlink.title %}
+    {% endif %}
+  {% endfor %}
+
+  {% endif %}
+
+  {% assign currentLinkTitle = link.title %}
+{% endif %} 
+
+
+{% endfor %}
+
+
+
+{% if showMobileNavigation %}
 <div class="mobile-only mobile-local-navigation">
   <div class="mobile-local-navigation__title page-width">
     <div class="layout-cell mobile-local-navigation__category-title">
       <div>
-        {% for link in main_menu.links %} {% if link.current == true %}
-        {{ link.title }}{% endif %} {% endfor %}
+        {{ currentLinkTitle }}
         <svg
           aria-hidden="true"
           focusable="false"
@@ -142,7 +163,8 @@
     <div
       class="layout-cell--expanding mobile-local-navigation__subcategory-title"
     >
-      <div>Turkeys
+
+      <div>{{firstSubLinkTitle}}
         <svg
         aria-hidden="true"
         focusable="false"
@@ -165,8 +187,10 @@
   <div class="mobile-local-navigation__category-flyout">
   </div>
 </div>
+{% endif %}
 
-<script>
+
+<script defer>
   
 $('.mobile-local-navigation__title').on('click',function (e) {
   let mainCategoryIsOpen = false;
@@ -175,6 +199,7 @@ $('.mobile-local-navigation__title').on('click',function (e) {
   const mainCategory = $('.mobile-local-navigation__category-title');
   const subCategory = $('.mobile-local-navigation__subcategory-title');
   const flyOut = $('.mobile-local-navigation__flyout-overlay');
+  
   // When click the main category
   if($(e.target).hasClass('mobile-local-navigation__category-title')){
     $(e.target).toggleClass('is_open');
@@ -208,16 +233,20 @@ $('.mobile-local-navigation__title').on('click',function (e) {
     }
     return;
   }
+  closeNavgation();
+})
+
+function closeNavgation() {
+  removeCls($('.mobile-local-navigation'), 'is_open');
+  $('body').css('overflow-y', 'auto');
   removeCls($('.mobile-local-navigation .sub-navigation'), 'is_open');
   removeCls($('.mobile-local-navigation .main-navigation'), 'is_open');
-  removeCls(container, 'is_open');
-  $('body').css('overflow-y', 'auto');
-
-})
+  removeCls($('.mobile-local-navigation__subcategory-title'),'is_open');
+}
 
 function removeCls(target, cls) {
   if(target.hasClass(cls)){
-    target.removeClass(cls)
+    target.removeClass(cls);
   }
 }
 
@@ -225,6 +254,7 @@ const createNavigationList = function (target, cls) {
   const container = $('.mobile-local-navigation__category-flyout');
   const wrapper = $(`<div class="mobile-local-navigation__flyout-content ${cls}"></div>`);
   const mainCategoryTags = $(target);
+  console.log(mainCategoryTags);
   mainCategoryTags.each((index, item)=>{
     const node = $(item).clone();
     node.attr('class', 'mobile-local-navigation__flyout-row');
@@ -235,7 +265,15 @@ const createNavigationList = function (target, cls) {
   })
   container.append(wrapper);
 };
-createNavigationList('.site-navigation .site-nav__link', 'main-navigation');
-createNavigationList('.site-navigation .site-nav__dropdown-link','sub-navigation');
+
+$(document).ready(function () {
+  createNavigationList('.site-navigation .site-nav__link', 'main-navigation');
+  createNavigationList('.sidebar .main-link','sub-navigation');
+  $('.mobile-local-navigation__flyout-content').on('click',function () {
+    closeNavgation();
+  })
+
+})
+
 
 </script>
