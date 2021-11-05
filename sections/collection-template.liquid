@@ -333,7 +333,7 @@
       // Watch position
       function wacth(element, target) {
         element.each(function () {
-          if ($(this).offset().top <= scrollTop + 100) {
+          if ($(this).offset().top <= scrollTop + 130) {
             var id = $(this).children()[0].id;
             target.each(function () {
               if ($(this).attr("href") === "#" + id) {
