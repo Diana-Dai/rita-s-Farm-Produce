@@ -328,25 +328,36 @@
 
     $(window).scroll(function () {
       var scrollTop = $(this).scrollTop();
-      wacth($(".product-tiles"), $(".sidebar a"));
-      wacth($(".section-page"), $(".collapse-link"));
+      wacth($(".product-tiles"), $(".sidebar a"), false);
+      wacth($(".product-tiles"), $(".sub-navigation a"), true);
+      wacth($(".section-page"), $(".collapse-link"),false);
       // Watch position
-      function wacth(element, target) {
+      function wacth(element, target, mobile) {
         element.each(function () {
           if ($(this).offset().top <= scrollTop + 130) {
             var id = $(this).children()[0].id;
             target.each(function () {
               if ($(this).attr("href") === "#" + id) {
+                // If mobile version
+                if(mobile){
+                  if($('#current-title').text() !== $(this).text())
+                  $('#current-title').text($(this).text());
+                  return;
+                }
+                // Desktop version
                 if (!$(this).hasClass("active")) {
                   target.removeClass("active");
                   $(this).addClass("active");
                 }
               }
+
             });
+
+
           }
+
         });
       };
-      
     });
     
   })

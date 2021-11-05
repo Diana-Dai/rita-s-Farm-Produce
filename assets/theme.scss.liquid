@@ -4241,12 +4241,8 @@ $color-blankstate-background: #f4f4f4;
 
 .site-header {
   position: relative;
-/*   padding: 10px 0; */
   background: $colorNav;
   margin-top: -16px;
-  @include media-query($medium-up) {
-    padding: 20px 0 10px 0;
-  }
 }
 
 .site-header--stuck {
@@ -4261,10 +4257,6 @@ $color-blankstate-background: #f4f4f4;
   // Rearrangement for when top search drawer is open so nav is above overlay
   .js-drawer-open--search & {
     z-index: $z-index-header-search;
-  }
-
-  @include media-query($medium-up) {
-    padding: 15px 0;
   }
 }
 
