@@ -332,7 +332,6 @@
       wacth($(".product-tiles"), $(".sub-navigation a"), true);
       wacth($(".section-page"), $(".collapse-link"),false);
       // Watch position
-      console.log(scrollTop)
       function wacth(element, target, mobile) {
         if(mobile){
             var currentTop = scrollTop+160;
@@ -341,7 +340,6 @@
         }
         element.each(function () {
           if ($(this).offset().top <= currentTop) {
-            console.log($(this),$(this).offset().top, currentTop)
             var id = $(this).children()[0].id;
             target.each(function () {
               if ($(this).attr("href") === "#" + id) {
