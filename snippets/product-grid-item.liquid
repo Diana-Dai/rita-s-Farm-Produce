@@ -1,3 +1,39 @@
+<style>
+    .product-tile__message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+  }
+  .product-tile__message__text {
+      position: relative;
+      padding: 0;
+      margin-top: calc(50% - 14px);
+      height: 42px;
+      width: 100%;
+      font-size: 1.25rem;
+      line-height: 1.25em;
+      letter-spacing: .2px;
+      text-transform: none;
+      font-size: 18px;
+      text-shadow: 0 0 6px rgba(0,0,0,.9);
+      color: #fff;
+      user-select: none;
+  }
+  .product-tile__product-photo-tinter{
+    background-color: rgba(0,0,0,.7);
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    transition: background-color .2s ease-in-out;
+  }
+</style>
 {% capture form_id %}AddToCartForm-{{ section_id }}{% endcapture %}
 {% unless grid_item_width %}
   {%- assign grid_item_width = 'medium-up--one-quarter small--one-half' -%}
@@ -34,11 +70,6 @@
         {{ custom_label }}
       </div>
     {% else %}
-      {% if sold_out %}
-        <div class="grid-product__tag grid-product__tag--sold-out">
-          {{ 'products.product.sold_out' | t }}
-        </div>
-      {% endif %}
       {% if on_sale and sold_out == false %}
         {% if settings.product_save_amount %}
           <div class="grid-product__tag grid-product__tag--sale">
@@ -66,7 +97,7 @@
     {%- assign preview_image = product.featured_media.preview_image -%}
     {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
-    <a href="{{ product.url | within: collection }}" class="grid-product__link {% if sold_out %} grid-product__link--disabled{% endif %}">
+    <a href="{{ product.url | within: collection }}" class="grid-product__link">
       <div class="grid-product__image-mask">
         {% if fixed_aspect_ratio %}
           <div
@@ -105,8 +136,15 @@
             </div>
           {% endif %}
         {% endunless %}
+          {% if sold_out %}
+          <div class="product-tile__product-photo-tinter"></div>
+            <div class="product-tile__message">
+              <div class="product-tile__message__text">
+                {{ 'products.product.sold_out' | t }}
+              </div>
+            </div>
+          {% endif %}
       </div>
-
       <div class="grid-product__meta">
         <div class="grid-product__title">{{ product.title }}</div>
         {% if settings.vendor_enable %}
