@@ -33,6 +33,9 @@
     pointer-events: none;
     transition: background-color .2s ease-in-out;
   }
+  .grid-product-visuals{
+    position: relative;
+  }
 </style>
 {% capture form_id %}AddToCartForm-{{ section_id }}{% endcapture %}
 {% unless grid_item_width %}
@@ -97,97 +100,100 @@
     {%- assign preview_image = product.featured_media.preview_image -%}
     {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
-    <a href="{{ product.url | within: collection }}" class="grid-product__link">
-      <div class="grid-product__image-mask">
-        {% if fixed_aspect_ratio %}
-          <div
-            class="grid__image-ratio grid__image-ratio--{{ settings.product_grid_image_size }} lazyload"
-            data-bgset="{% include 'bgset', image: preview_image %}"
-            data-sizes="auto">
-          </div>
-        {% else %}
-          <div class="image-wrap"
-            style="height: 0; padding-bottom: {{ 100 | divided_by: preview_image.aspect_ratio }}%;"
-            >
-            {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-            <img class="grid-product__image lazyload"
-                data-src="{{ img_url }}"
-                data-widths="[180, 360, 540, 720, 900, 1080]"
-                data-aspectratio="{{ preview_image.aspect_ratio }}"
-                data-sizes="auto"
-                alt="{{ preview_image.alt | escape }}">
-            <noscript>
-              <img class="grid-product__image lazyloaded"
-                src="{{ preview_image | img_url: '400x' }}"
-                alt="{{ preview_image.alt | escape }}">
-            </noscript>
-          </div>
-        {% endif %}
-
-        {% unless sold_out %}
-          {% if settings.product_hover_image and product.images.size > 1 %}
-            {% for image in product.images offset: 1 limit: 1 %}
-              {%- assign second_image = image -%}
-            {% endfor %}
+    <div class="grid-product-visuals">
+      <a href="{{ product.url | within: collection }}" class="grid-product__link">
+        <div class="grid-product__image-mask">
+          {% if fixed_aspect_ratio %}
             <div
-              class="grid-product__secondary-image small--hide lazyload"
-              data-bgset="{% include 'bgset', image: second_image %}"
+              class="grid__image-ratio grid__image-ratio--{{ settings.product_grid_image_size }} lazyload"
+              data-bgset="{% include 'bgset', image: preview_image %}"
               data-sizes="auto">
             </div>
-          {% endif %}
-        {% endunless %}
-          {% if sold_out %}
-          <div class="product-tile__product-photo-tinter"></div>
-            <div class="product-tile__message">
-              <div class="product-tile__message__text">
-                {{ 'products.product.sold_out' | t }}
-              </div>
-            </div>
-          {% endif %}
-      </div>
-      <div class="grid-product__meta">
-        <div class="grid-product__title">{{ product.title }}</div>
-        {% if settings.vendor_enable %}
-          <div class="grid-product__vendor">{{ product.vendor }}</div>
-        {% endif %}
-        <div class="grid-product__price">
-          {% if on_sale %}
-            <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-            <span class="grid-product__price--original">{{ product.compare_at_price | money }}</span>
-            <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
-          {% endif %}
-          {% if product.price_varies %}
-            {% assign price = product.price_min | money %}
-            <span {% if on_sale %}class="sale-price"{% endif %}>
-              {{ 'products.general.from_text_html' | t: price: price }}
-            </span>
           {% else %}
-            <span {% if on_sale %}class="sale-price"{% endif %}>
-              {{ product.price  | money }}
-            </span>
-          {% endif %}
-
-          {%- assign product_variant = product.selected_or_first_available_variant -%}
-          {%- if product_variant.unit_price_measurement -%}
-            <div class="product__unit-price">
-              {%- capture unit_price_base_unit -%}
-                {%- if product_variant.unit_price_measurement -%}
-                  {%- if product_variant.unit_price_measurement.reference_value != 1 -%}
-                    {{ product_variant.unit_price_measurement.reference_value }}
-                  {%- endif -%}
-                  {{ product_variant.unit_price_measurement.reference_unit }}
-                {%- endif -%}
-              {%- endcapture -%}
-
-              {{ product_variant.unit_price | money }}/{{ unit_price_base_unit }}
+            <div class="image-wrap"
+              style="height: 0; padding-bottom: {{ 100 | divided_by: preview_image.aspect_ratio }}%;"
+              >
+              {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+              <img class="grid-product__image lazyload"
+                  data-src="{{ img_url }}"
+                  data-widths="[180, 360, 540, 720, 900, 1080]"
+                  data-aspectratio="{{ preview_image.aspect_ratio }}"
+                  data-sizes="auto"
+                  alt="{{ preview_image.alt | escape }}">
+              <noscript>
+                <img class="grid-product__image lazyloaded"
+                  src="{{ preview_image | img_url: '400x' }}"
+                  alt="{{ preview_image.alt | escape }}">
+              </noscript>
             </div>
-          {%- endif -%}
+          {% endif %}
+  
+          {% unless sold_out %}
+            {% if settings.product_hover_image and product.images.size > 1 %}
+              {% for image in product.images offset: 1 limit: 1 %}
+                {%- assign second_image = image -%}
+              {% endfor %}
+              <div
+                class="grid-product__secondary-image small--hide lazyload"
+                data-bgset="{% include 'bgset', image: second_image %}"
+                data-sizes="auto">
+              </div>
+            {% endif %}
+          {% endunless %}
+            {% if sold_out %}
+            <div class="product-tile__product-photo-tinter"></div>
+              <div class="product-tile__message">
+                <div class="product-tile__message__text">
+                  {{ 'products.product.sold_out' | t }}
+                </div>
+              </div>
+            {% endif %}
         </div>
-        {% if settings.enable_product_reviews %}
-          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+      </a>
+      {% include 'customcartbutton', section_id: product.selected_or_first_available_variant.id %}
+    </div>
+    <div class="grid-product__meta">
+      <div class="grid-product__title">{{ product.title }}</div>
+      {% if settings.vendor_enable %}
+        <div class="grid-product__vendor">{{ product.vendor }}</div>
+      {% endif %}
+      <div class="grid-product__price">
+        {% if on_sale %}
+          <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+          <span class="grid-product__price--original">{{ product.compare_at_price | money }}</span>
+          <span class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
         {% endif %}
+        {% if product.price_varies %}
+          {% assign price = product.price_min | money %}
+          <span {% if on_sale %}class="sale-price"{% endif %}>
+            {{ 'products.general.from_text_html' | t: price: price }}
+          </span>
+        {% else %}
+          <span {% if on_sale %}class="sale-price"{% endif %}>
+            {{ product.price  | money }}
+          </span>
+        {% endif %}
+
+        {%- assign product_variant = product.selected_or_first_available_variant -%}
+        {%- if product_variant.unit_price_measurement -%}
+          <div class="product__unit-price">
+            {%- capture unit_price_base_unit -%}
+              {%- if product_variant.unit_price_measurement -%}
+                {%- if product_variant.unit_price_measurement.reference_value != 1 -%}
+                  {{ product_variant.unit_price_measurement.reference_value }}
+                {%- endif -%}
+                {{ product_variant.unit_price_measurement.reference_unit }}
+              {%- endif -%}
+            {%- endcapture -%}
+
+            {{ product_variant.unit_price | money }}/{{ unit_price_base_unit }}
+          </div>
+        {%- endif -%}
       </div>
-    </a>
+      {% if settings.enable_product_reviews %}
+        <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+      {% endif %}
+    </div>
    	
     {% comment %}
    <input type="number" class="add_qty" />
@@ -204,7 +210,6 @@
         </button></div>  
 </form> -->
     {% endcomment %} 
-    {% include 'customcartbutton', section_id: product.selected_or_first_available_variant.id %}
     
     {% if settings.collection_color_swatches %}
       {%- assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase-%}

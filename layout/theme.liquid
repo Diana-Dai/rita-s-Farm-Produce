@@ -91,7 +91,67 @@
   {% render 'shogun-head' %}
   
   <style>
+    .d_buttonsec{
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+    .d_btncart.btn{
+      position: absolute;
+      height: 40px;
+      box-sizing: border-box;
+      border: none;
+      background-color: #178841;
+      box-shadow: none;
+      text-align: center;
+      font-size: 36px;
+      pointer-events: auto;
+      transition: background-color .2s;
+      right: 0;
+      bottom: 0;
+      min-width: 65px;
+      width: 90px;
+      border-radius: 40px;
+      transition-property: width,border-radius;
+      transition-duration: .35s;
+    } 
+    .d_btncart.btn:hover,
+    .d_btncart.btn:focus{
+      background-color: #178841;
+      border-color: #178841;
+    }
 
+    .d_buttonsec  .product__quantity .dqtywrap{
+      max-width:100%; 
+        display:flex; 
+      align-items:stretch;
+    }
+    .d_buttonsec  .product__quantity .dqtywrap input{
+      order:2;
+        padding:5px; 
+    } 
+    .d_buttonsec  .product__quantity .dqtywrap button{
+      position:static; 
+        width:50px; 
+        display:flex; 
+        align-items:center; 
+          background: #178841;
+      border-color: #178841;
+      color: #fff;
+        justify-content:center;
+    }
+    .d_buttonsec  .product__quantity .dqtywrap button svg{
+      fill:#fff; 
+        stroke:#fff; 
+    }
+    .d_buttonsec  .product__quantity .dqtywrap .js-qty__adjust--minus{      
+      order:1; 
+      border-radius: 20px 0 0 20px;
+    }
+    .d_buttonsec  .product__quantity .dqtywrap .js-qty__adjust--plus{      
+        order:3; 
+        border-radius: 0 20px 20px 0;
+    }
     .cart-link__bubble--visible{
     	background-color: transparent !important;
     	border: 0px !important;
