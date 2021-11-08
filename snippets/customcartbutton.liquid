@@ -18,7 +18,6 @@
 {% capture form_id %}AddToCartForm-{{ section_id }}{% endcapture %}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
   
-
 {% form 'product', product, data-productid: product.id, id: form_id, class: 'product-single__form' %}
 
   {% unless product.has_only_default_variant %}
