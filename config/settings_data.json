@@ -194,7 +194,7 @@
       "collection-template": {
         "type": "collection-template",
         "settings": {
-          "per_row": 4,
+          "per_row": 3,
           "collection_image_enable": true,
           "parallax": true,
           "description_position": "top",
