@@ -168,12 +168,6 @@
     {% endcomment %} 
     {% include 'customcartbutton', section_id: product.selected_or_first_available_variant.id %}
     
-    <!-- Flits Wishlist Included -->
-    
-    {% include 'flits_custom_wishlist', product:product %}
-    
-    <!-- End -->
-    
     {% if settings.collection_color_swatches %}
       {%- assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase-%}
       {%- assign swatch_file_extension = 'png' -%}
