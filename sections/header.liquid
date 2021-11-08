@@ -169,13 +169,14 @@
           </div>
         {%- endif -%}
       </div>
+      {% if section.settings.main_menu_alignment == 'center' %}
+      <div class="text-center">
+        {% include 'header-desktop-nav' %}
+      </div>
+      {% endif %}
       {% include 'header-mobile-nav' %}
     </header>
-    {% if section.settings.main_menu_alignment == 'center' %}
-          <div class="text-center">
-            {% include 'header-desktop-nav' %}
-          </div>
-        {% endif %}
+
   </div>
 </div>
 <script>
