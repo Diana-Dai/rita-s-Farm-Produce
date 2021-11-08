@@ -23,8 +23,12 @@
       color: #fff;
       user-select: none;
   }
-  .product-tile__product-photo-tinter{
+  .product-is-in-basket .product-tile__product-photo-tinter,
+  .product-tile__product-photo-tinter.sold-out{
     background-color: rgba(0,0,0,.7);
+  }
+  .product-tile__product-photo-tinter{
+    background-color: rgba(0,0,0,0);
     position: absolute;
     right: 0;
     top: 0;
@@ -140,8 +144,8 @@
               </div>
             {% endif %}
           {% endunless %}
+          <div class="product-tile__product-photo-tinter {% if sold_out %}sold-out  {% endif %}"></div>
             {% if sold_out %}
-            <div class="product-tile__product-photo-tinter"></div>
               <div class="product-tile__message">
                 <div class="product-tile__message__text">
                   {{ 'products.product.sold_out' | t }}

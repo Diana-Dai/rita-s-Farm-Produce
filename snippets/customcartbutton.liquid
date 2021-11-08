@@ -88,7 +88,7 @@
         </button>
       {% endif %}
 
-      <!-- {% if has_y >= 1 %}
+      {% if has_y >= 1 %}
     <button
         style="display:none;"
         {% if product.empty? %}type="button"{% else %}type="button"{% endif %}
@@ -97,7 +97,8 @@
         data-id="{{ section_id }}"
         class="AddToCart-{{ section_id }} d_btncart {% if enable_dynamic_buttons %}btn--tertiary{% else %}btn{% endif %} btn--full btn--no-animate add-to-cart"
         {% unless current_variant.available %} disabled="disabled"{% endunless %}>
-        <span id="AddToCartText-{{ section_id }}">
+        <div class="product-tile__quick-add-plus"></div>
+        <!-- <span id="AddToCartText-{{ section_id }}">
           {% if current_variant.available %}
             {% if template == 'product.preorder' %}
               {{ 'products.product.preorder' | t }}
@@ -108,10 +109,10 @@
             {{ 'products.product.sold_out' | t }}
           {% endif %}
         </span>
-      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i> -->
       </button>
     
-    {% endif %} -->
+    {% endif %}
 
 
       <div aria-hidden="true" class="hide" id="VariantsJson-{{ section_id }}">

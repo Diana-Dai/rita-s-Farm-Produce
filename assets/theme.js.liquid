@@ -6077,7 +6077,7 @@ $(document).on('click','.add-to-cart',function(e){
 	var secid = $(this).attr('data-id');
   	//$(this).hide();
     $('.AddToCart-'+secid).hide();
-    console.log(secid);
+    $(this).parent().parent().parent().addClass('product-is-in-basket');
   	//$('#Quantity-'+secid).val(1);
     $('.RQuantity-'+secid).val(parseInt(1));
   	$('.RProductSectionQty-'+secid).show();

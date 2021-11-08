@@ -110,6 +110,7 @@
     <style>
       .d_buttonsec {
         position: absolute;
+        left:0;
         right: 0;
         bottom: 0;
         margin: 0 1rem;
@@ -119,7 +120,7 @@
         height: 40px;
         box-sizing: border-box;
         border: none;
-        background-color: #178840;
+        background-color: #178840 !important;
         opacity: 0.7;
         box-shadow: none;
         text-align: center;
@@ -137,10 +138,48 @@
       .d_btncart.btn:hover,
       .d_btncart.btn:focus {
         background-color: #ffffff;
-      border-color: #ffffff;
+        border-color: #ffffff;
+      }
+      .quick-add-button{
+        position: absolute;
+        height: 40px;
+        box-sizing: border-box;
+        border: none;
+        background-color: #178840;
+        box-shadow: none;
+        text-align: center;
+        font-size: 36px;
+        pointer-events: auto;
+        transition: background-color .2s;
+      }
+      .quick-add-button:hover{
+        background-color:#fff;
+      }
+      .quick-add-button:hover .product-tile__quick-add-minus{
+        background-color: #178840;
+      }
+      .quick-add-button:hover .product-tile__quick-add-plus{
+        color:#178840;
+      }
+      .add-button-remove{
+        width: calc(50% - 1px);
+        left: 0;
+        right: auto;
+        min-width: 10px;
+        opacity: 1;
+        border-radius: 40px 0 0 40px;
+        transition-property: width,left,opacity;
+        transition-duration: .35s;
+      }
+      .add-button-add{
+        width: 50%;
+        right: 0;
+        min-width: 65px;
+        border-radius: 0 40px 40px 0;
       }
 
       .d_buttonsec .product__quantity .dqtywrap {
+        
         max-width: 100%;
         display: flex;
         align-items: stretch;
@@ -159,11 +198,18 @@
         color: #fff;
         justify-content: center;
       }
+      .product-tile__quick-add-minus{
+        width: 18px;
+        height: 2px;
+        background: #f9f8f4;
+        margin-left: calc(50% - 9px);
+      }
       .product-tile__quick-add-plus {
         position: relative;
         width: 18px;
         height: 18px;
         margin-left: calc(50% - 9px);
+        color:#f9f8f4;
       }
       .product-tile__quick-add-plus::before {
         left: 8px;
@@ -179,7 +225,7 @@
       .product-tile__quick-add-plus::after,
       .product-tile__quick-add-plus::before {
         position: absolute;
-        background-color: #f9f8f4;
+        background-color: currentColor;
         content: "";
         transition: background-color 0.2s;
       }
