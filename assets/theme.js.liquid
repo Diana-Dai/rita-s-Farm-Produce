@@ -6085,6 +6085,7 @@ $(document).on('click','.add-to-cart',function(e){
 
 $(document).on('click','.rqtyup',function(){
   	$(this).attr('disabled',true);
+
 	var secid = $(this).attr('data-id');
   	//var inpval =  $('.RQuantity-'+secid).val();
   	var inpval = $(this).parent('div').find('input').val();
@@ -6102,7 +6103,8 @@ $(document).on('click','.rqtyup',function(){
   	
     if(inpval == 0){
 		$('.RProductSectionQty-'+secid).hide();
-        $('.AddToCart-'+secid).show();
+    $('.AddToCart-'+secid).show();
+    $('.AddToCart-'+secid).parent().parent().parent().removeClass('product-is-in-basket');
     }
   	setTimeout(function(){ 
          $('.RQuantity-'+secid).val(parseInt($('[data-pid="'+secid+'"]').val()));
