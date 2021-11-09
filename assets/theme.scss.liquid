@@ -971,6 +971,9 @@ body {
 }
 
     #zapiet-delivery-validator__topbar {
+    border-radius: 6px !important;
+    background: rgba(255,255,255,.5) !important;
+    color:black;
     width: 420px;
     height: 180px;
     margin-top: 179px;
@@ -985,16 +988,26 @@ body {
     }
   
     #zapiet-delivery-validator__form {
-        display: block !important;
+        display: flex;
+        flex-direction:column;
     }
   
     #zapiet-delivery-validator__label{
-      margin-bottom: 75px;
+      color: #000;
+      font-size:1.4rem;
     }
 
   .zapiet-delivery-validator__fields {
     margin-top: 20px;
-    margin-right:100px;
+    width:300px;
+  }
+  .zapiet-delivery-validator__close{
+    position: absolute;
+    top: 0.5rem;
+    right:1rem !important;
+  }
+  #zapiet-delivery-validator #zapiet-delivery-validator__topbar #zapiet-delivery-validator__close svg{
+    fill: #000 !important;
   }
 
 .product-section .page-content {
