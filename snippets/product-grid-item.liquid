@@ -122,7 +122,11 @@
       {% include 'customcartbutton', section_id: product.selected_or_first_available_variant.id %}
     </div>
     <div class="grid-product__meta">
-      <div class="grid-product__title">{{ product.title }}</div>
+      <div class="grid-product__title">
+        <a href="{{ product.url | within: collection }}">
+        {{ product.title }}
+        </a>
+      </div>
       {% if settings.vendor_enable %}
         <div class="grid-product__vendor">{{ product.vendor }}</div>
       {% endif %}
