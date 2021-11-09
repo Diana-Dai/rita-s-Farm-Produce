@@ -6136,14 +6136,10 @@ $(document).on('click','.d_btncart' , function(e){
     data: {id:id,quantity:1},
     success: function(){
     	$('body').trigger('added.ajaxProduct', this);
-      
-      
     }
   });
   //$(this).parent('form').submit();
   $('body').trigger('added.ajaxProduct', this);
   $('body').trigger('added.ajaxProduct', this);
-  
-
 	//e.preventDefault();
 });

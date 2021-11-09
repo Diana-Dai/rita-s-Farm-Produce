@@ -40,7 +40,6 @@
       {% assign has_y = 0 %}
 
       {% for item in cart.items %}
-
         {% if item.product.variants[0].id == section_id %}
           {% assign has_y = has_y | plus: 1 %}
           {% if item.quantity>0 %}
@@ -63,10 +62,7 @@
           <!--<label for="Quantity-{{ section_id }}">{{ 'products.product.quantity' | t }}</label>-->
           {% include 'qtybox', id: section_id, qty: 1, min: 0 %}
         </div>
-
         <!--  End Quantity Button -->
-
-
         {%- assign enable_dynamic_buttons = false -%}
         {% if settings.enable_payment_button and template != 'product.preorder' %}
           {%- assign enable_dynamic_buttons = true -%}
@@ -89,29 +85,28 @@
       {% endif %}
 
       {% if has_y >= 1 %}
-    <button
-        style="display:none;"
-        {% if product.empty? %}type="button"{% else %}type="button"{% endif %}
-        name="add"
-        id="AddToCart-{{ section_id }}"
-        data-id="{{ section_id }}"
-        class="AddToCart-{{ section_id }} d_btncart {% if enable_dynamic_buttons %}btn--tertiary{% else %}btn{% endif %} btn--full btn--no-animate add-to-cart"
-        {% unless current_variant.available %} disabled="disabled"{% endunless %}>
-        <div class="product-tile__quick-add-plus"></div>
-        <!-- <span id="AddToCartText-{{ section_id }}">
-          {% if current_variant.available %}
-            {% if template == 'product.preorder' %}
-              {{ 'products.product.preorder' | t }}
-            {% else %}
-              {{ 'products.product.add_to_cart' | t }}
-            {% endif %}
-          {% else %}
-            {{ 'products.product.sold_out' | t }}
-          {% endif %}
-        </span>
-      <i class="fa fa-shopping-cart" aria-hidden="true"></i> -->
-      </button>
-    
+        <button
+            style="display:none;"
+            {% if product.empty? %}type="button"{% else %}type="button"{% endif %}
+            name="add"
+            id="AddToCart-{{ section_id }}"
+            data-id="{{ section_id }}"
+            class="AddToCart-{{ section_id }} d_btncart {% if enable_dynamic_buttons %}btn--tertiary{% else %}btn{% endif %} btn--full btn--no-animate add-to-cart"
+            {% unless current_variant.available %} disabled="disabled"{% endunless %}>
+            <div class="product-tile__quick-add-plus"></div>
+            <!-- <span id="AddToCartText-{{ section_id }}">
+              {% if current_variant.available %}
+                {% if template == 'product.preorder' %}
+                  {{ 'products.product.preorder' | t }}
+                {% else %}
+                  {{ 'products.product.add_to_cart' | t }}
+                {% endif %}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            </span>
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i> -->
+          </button>
     {% endif %}
 
 

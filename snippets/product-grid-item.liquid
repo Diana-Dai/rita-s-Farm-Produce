@@ -62,7 +62,14 @@
     {%- assign preview_image = product.featured_media.preview_image -%}
     {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
-    <div class="grid-product-visuals">
+    {% assign thisProductIsInCart = false %}
+    {% for item in cart.items %}
+      {% if item.product.id == product.id %}
+        {% assign thisProductIsInCart = true %}
+      {% else %}
+      {% endif %}
+    {% endfor %}
+    <div class="grid-product-visuals {% if thisProductIsInCart == true %} product-is-in-basket{% endif %}">
       <a href="{{ product.url | within: collection }}" class="grid-product__link">
         <div class="grid-product__image-mask">
           {% if fixed_aspect_ratio %}
