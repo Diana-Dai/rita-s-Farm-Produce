@@ -1,0 +1,94 @@
+<style>
+.section-header{
+  margin-bottom:40px;
+  text-align:left;
+}
+.section-header__title{
+  font-size:2rem;
+  letter-spacing:1px;
+  line-height: 1.3;
+}
+.section-header{
+  margin-bottom:0;
+}
+.section-content__section{
+letter-spacing: 0;
+margin-top: 40px;
+}
+.section-content__section h3{
+  font-weight: 500;
+  margin-bottom:0;
+}
+@media screen and (min-width: 750px){
+.section-content{
+  display:flex;
+  flex-wrap:wrap;
+  margin: 0 -60px;
+}
+.section-content__section{
+  padding: 0 60px;
+  width:50%;
+}
+.section-header__title{
+  font-size:3.5rem;
+}
+}
+.section-content__article{
+  display:inline-block;
+  width:100%;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e8e8e8;
+}
+@media screen and (min-width: 1024px){
+  .page-content.blog{
+    margin-left:20%;
+  }
+}
+
+</style>
+<div data-section-id="{{ section.id }}" data-section-type="blog">
+  <div class="page-width blog page-content">
+    <header class="section-header">
+      <h1 class="section-header__title">
+        {{ blog.title }}
+      </h1>
+      <p>
+        {{ section.settings.description }}
+      </p>
+    </header>
+    <div class="section-content">
+      {% for tag in blog.all_tags %}
+      <div class="section-content__section">
+        <h3>{{tag}}</h4>
+        {% for article in blog.articles %}
+        {% if article.tags[0] == tag %}
+        <a class="section-content__article" href="{{ article.url }}"><span>{{ article.title }}</span></a>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog",
+  "tag": "section",
+  "settings": [
+  {
+    "type": "textarea",
+    "id": "description",
+    "label": "Blog Description",
+    "default": "Blog Description Blog Description Blog Description"
+  }
+  ],
+ "presets": [
+   {
+     "name":"Blog"
+   }
+ ]
+}
+{% endschema %}

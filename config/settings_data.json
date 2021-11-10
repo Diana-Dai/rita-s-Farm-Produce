@@ -240,11 +240,11 @@
       "blog-template": {
         "type": "blog-template",
         "settings": {
-          "blog_show_tag_filter": true,
+          "blog_show_tag_filter": false,
           "blog_show_rss": false,
-          "blog_show_tags": true,
-          "blog_show_date": true,
-          "blog_show_comments": true,
+          "blog_show_tags": false,
+          "blog_show_date": false,
+          "blog_show_comments": false,
           "blog_show_author": false
         }
       },
@@ -803,6 +803,60 @@
           "per_row": 6,
           "view_all": true,
           "divider": false
+        }
+      },
+      "help-center-body": {
+        "type": "help-center-body",
+        "blocks": {
+          "54a62046-96a1-4c22-88c4-1fc7028fed99": {
+            "type": "section",
+            "settings": {
+              "link": "shopify:\/\/blogs\/news",
+              "title": "General",
+              "description": "<p>What is Good Eggs, where do we deliver, our food standards, etc.<\/p>"
+            }
+          },
+          "7a412ead-bbef-4921-a620-191f698772e9": {
+            "type": "section",
+            "settings": {
+              "link": "shopify:\/\/blogs\/delivery",
+              "title": "Delivery",
+              "description": "<p>What is Good Eggs, where do we deliver, our food standards, etc.<\/p>"
+            }
+          },
+          "b67b3a9b-ad2b-4213-a061-18f90d675f33": {
+            "type": "section",
+            "settings": {
+              "link": "shopify:\/\/blogs\/ordering",
+              "title": "Ordering",
+              "description": "<p>What is Good Eggs, where do we deliver, our food standards, etc.<\/p>"
+            }
+          },
+          "372ee376-6e40-4be8-8dd5-d92f48f22a0c": {
+            "type": "section",
+            "settings": {
+              "link": "shopify:\/\/blogs\/payments",
+              "title": "Payments",
+              "description": "<p>What is Good Eggs, where do we deliver, our food standards, etc.<\/p>"
+            }
+          },
+          "626f8a25-cb70-4a1e-bace-c6055138452d": {
+            "type": "section",
+            "settings": {
+              "link": "shopify:\/\/blogs\/pricing-fees",
+              "title": "Pricing\/Fees",
+              "description": "<p>What is Good Eggs, where do we deliver, our food standards, etc.<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "54a62046-96a1-4c22-88c4-1fc7028fed99",
+          "7a412ead-bbef-4921-a620-191f698772e9",
+          "b67b3a9b-ad2b-4213-a061-18f90d675f33",
+          "372ee376-6e40-4be8-8dd5-d92f48f22a0c",
+          "626f8a25-cb70-4a1e-bace-c6055138452d"
+        ],
+        "settings": {
         }
       }
     },
