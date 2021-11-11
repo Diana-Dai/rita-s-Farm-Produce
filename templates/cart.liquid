@@ -1,8 +1,12 @@
+
 <!-- Begin ReCharge code -->
 {% include 'subscription-cart-footer' %}
 <!-- End ReCharge code -->
 <div class="page-width page-content">
-
+  tags:
+  {% for tag in order.tags %}
+{{ tag }}
+{% endfor %}
   {% include 'breadcrumbs' %}
 
   <div class="grid">
@@ -234,3 +238,4 @@
 </div>
 
 <script src="https://cdn.pagefly.io/static/assets/pf-custom-shopify-cart.min.js" defer></script>
+

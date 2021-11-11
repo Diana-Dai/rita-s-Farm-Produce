@@ -325,21 +325,26 @@
 
 <script defer>
   $(document).ready(function(){
-
+    setStickySidebar();
     $(window).scroll(function () {
-      var scrollTop = $(this).scrollTop();
+      watchContent()
+    });
+    
+    $(window).resize(function () { 
+      // debounce(setStickySidebar, 1000, true);
+      setStickySidebar();
+    });
+  })
+  function watchContent() {
+    var scrollTop = $(this).scrollTop();
       wacth($(".product-tiles"), $(".sidebar a"), false);
       wacth($(".product-tiles"), $(".sub-navigation a"), true);
       wacth($(".section-page"), $(".collapse-link"),false);
       // Watch position
       function wacth(element, target, mobile) {
-        if(mobile){
-            var currentTop = scrollTop+160;
-          }else{
-            var currentTop = scrollTop + 130;
-        }
+        var headerHeight = getHeaderHeight();
         element.each(function () {
-          if ($(this).offset().top <= currentTop) {
+          if ($(this).offset().top <= scrollTop + headerHeight) {
             var id = $(this).children()[0].id;
             target.each(function () {
               if ($(this).attr("href") === "#" + id) {
@@ -357,15 +362,20 @@
               }
 
             });
-
-
           }
-
         });
       };
-    });
-    
-  })
+    }
+  function setStickySidebar() {
+    var top = getHeaderHeight();
+    $('#CollectionAjaxContent nav').css('top', top+'px');
+    // Set the anchor
+    $(":root")[0].style.setProperty('--achor-postion', -top + 10 +'px');
+  }
+  function getHeaderHeight() {
+    return $('#shopify-section-header').innerHeight() + 20;
+  }
+
 </script>
 {% schema %}
   {

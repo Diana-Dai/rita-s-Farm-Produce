@@ -10483,13 +10483,9 @@ iframe.zoid-component-frame {
 // collections page
 .product-listings-view__subcategory-anchor{
   position: relative;
-  top: -87px;
+  top: var(--achor-postion);
 }
-@media only screen and (max-width: 767px) {
-  .product-listings-view__subcategory-anchor{
-    top:-150px;
-  }
-}
+
 
 #shopify-section-collection-template .page-content, .shopify-policy__container{
   padding-top: 30px !important;
@@ -10513,7 +10509,7 @@ iframe.zoid-component-frame {
   display: flex;
 }
 #CollectionAjaxContent .sidebar{
-  min-width: 200px;
+  min-width: 300px;
   width:auto;
   white-space: nowrap;
 }
