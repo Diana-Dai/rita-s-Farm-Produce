@@ -36,6 +36,14 @@
         {% endfor %}
       </select>
 
+      {% if template == 'collection.preorder' %}
+        <div class="line-item-property__field" style="opacity:0">
+          <label>Note:Pre-order item
+            <input type="radio" value="Pre-order item" name="properties[Note]" id="Note" checked style="pointer-events: none; display: none;">
+          </label>
+        </div>
+      {% endif %}
+
       <!-- Quantity Button -->
       {% assign has_y = 0 %}
 

@@ -1,51 +1,55 @@
 {% style %}
-.hero--{{ block.id }} .hero__title {
-  font-size: {{ block.settings.title_size | times: 0.5 }}px;
+.hero--{{ section.id }} .hero__title {
+  font-size: {{ section.settings.title_size | times: 0.5 }}px;
 }
 @media only screen and (min-width: 769px) {
-  .hero--{{ block.id }} .hero__title {
-    font-size: {{ block.settings.title_size }}px;
+  .hero--{{ section.id }} .hero__title {
+    font-size: {{ section.settings.title_size }}px;
   }
+}
+.hero-title .animation-contents:after{
+  content:'';
+  position:absolute;
+  background-image: url("data:image/svg+xml,%3Csvg class='icon' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='16' height='16' ml-update='aware'%3E%3Cpath d='M452 657a928 928 0 0 0-5 0zm14 0h-3 4-4 3zm5 0h-2 3-3 2zm5 0h-2 3-3 2zm4 0h-1l3-1-3 1h1zm5-1h-1 2-2 1zm5 0h-1 2-2 1zm4 0h4-4zm5 0 4-1-4 1zm5-1h3-3zm14-1-2 1a936 936 0 0 0 2-1zm9 0h-2 4-4 2zm5-1h-2a940 940 0 0 0 2 0zm10-1h-1 2-2 1zm4 0h3-3zm5-1h-1 3-3 1zm5 0h-1 2-2 1zm9-1zm10-2-4 1a954 954 0 0 0 4-1zm9-1h-1 2-2 1zm5-1-3 1 5-1-5 1 3-1zm4 0h-2l4-1-4 1h2zm5-1h-1l3-1-3 1h1zm5-1h-2 4-4 2zm5-1h-1a971 971 0 0 0 1 0zm9-1 3-1-3 1zm10-2-5 1a981 981 0 0 0 5-1zm14-3h-2 2-2 2zm4-1h-1 2-2 1zm5-1h-2 4-4 2zm5-1h-3a1003 1003 0 0 0 3 0zm19-5-1 1 4-1-4 1 1-1zm4-1zm33-8h-2l4-1-4 1h2zm54-17zM447 416c124 0 249-25 373-75v173l-5 2-13 5c-16-77-34-119-53-125l-47 22h1c24 21 42 61 53 120a972 972 0 0 1-309 51c-186 0-323-34-372-75a91 91 0 0 1-28-33v-1a260 260 0 0 0 0-19v-55a247 247 0 0 0 0-10v2c3-33 16-60 67-71 80-17 147 89 333 89zm369 168 4-2a1157 1157 0 0 1-4 2zm-746-6a180 180 0 0 0 0 1zm-7-7v1a124 124 0 0 1 0-1zm-7-7a89 89 0 0 0 1 1zm-3-4zm-4-6 1 1-1-1zm0-1v1a58 58 0 0 1 0-1zm-1-1 1 1-1-1zm-3-7a51 51 0 0 0 0 1zm0-1a50 50 0 0 0 0 1zm0-1a51 51 0 0 0 0 1zm0 0zm-2-6v1a55 55 0 0 1 0-1zm0-6zm-1-4zm1-12v5-5zm2-20-1 13 1-12zm1-4a484 484 0 0 1 0 1zm0-6a354 354 0 0 1 0 1zm1-86v3a190 190 0 0 0 0-3zm-4 124v-1l-1 4 1-3z' fill='%23FFF'/%3E%3Cpath d='M749 396c19 6 37 48 53 125l13-5 5-2v68l-6 2v1l-49 19v-1a975 975 0 0 1-318 54c-186 0-323-34-372-75-44-36-32-55-28-101 4 10 12 21 28 33 49 41 186 75 372 75 103 0 206-17 309-51-11-60-29-100-54-120zm-702 0a267 267 0 0 1-1 19l1-19z' fill='%23F9E5E5'/%3E%3Cpath d='M447 408c124 0 247-24 370-74l10-4v257l-4 2c-126 50-251 75-376 75-176 0-322-31-377-76a92 92 0 0 1-31-40l-1-2c-3-11-3-18-1-41l1-10 1-5 1-29v-36c-1-28 0-42 6-56l1-2c10-24 30-39 65-47a92 92 0 0 1 25-2c17 1 33 6 54 15l3 1 3 2 57 27 5 2c62 29 117 43 188 43zm361-55a995 995 0 0 1-361 70c-73 0-131-15-194-45l-5-2-60-29-3-1c-19-8-34-13-49-14l-21 2c-30 7-47 19-55 38l-1 2c-5 13-6 27-5 59v31c0 10 0 20-2 32l-1 12-1 5c-1 16-1 22 2 30v1c4 10 12 21 27 33 52 42 195 73 368 73 122 0 244-24 366-73V351l-5 2z' fill='%234C3030'/%3E%3Cpath d='M751 396c29 10 57 113 84 308 41-253-47-399-127-406-79-7-123 42-254 52-88 6-188 3-301-9 39-122 95-198 169-229 111-47 217-48 320-32 102 16 330 199 246 628-21 16-38 16-53 0-27-200-55-304-85-312z' fill='%23C40000'/%3E%3Cpath d='M153 341c113 12 213 15 301 9 131-10 175-59 254-52 80 7 168 153 127 406-28-202-57-304-87-309-41 28-104 42-190 42-129 0-242-26-303-47-41-15-75-31-102-49z' fill='%239E0000'/%3E%3Cpath d='M643 73c64 10 144 71 198 163 68 117 92 275 55 468l-2 8-2 2c-23 17-44 17-61 0l-1-1-1-2-2-13c-13-94-27-166-40-215l-1-4-1-2-1-4c-12-42-24-66-34-70-16 10-34 18-55 24a7 7 0 0 1-4-13c20-6 37-14 52-23l1-2 3-1h2c35 5 63 102 90 299l1 6 2 12c11 10 23 10 38 0l1-1 1-6c36-188 13-341-53-455-52-88-129-147-188-156a558 558 0 0 0-316 31c-26 11-49 27-71 50a7 7 0 1 1-10-10c23-24 48-41 75-53 102-43 205-51 324-32zM203 224a7 7 0 0 1 3 10l-1 2c-10 18-22 47-37 87l-3 7-3 8c25 17 57 31 95 45a1025 1025 0 0 0 309 47 7 7 0 0 1 1 14h-9a1038 1038 0 0 1-305-48c-41-14-74-30-101-48l-2-1-5-3 4-11 3-8c17-46 31-79 42-98a7 7 0 0 1 9-3zm9-23a7 7 0 1 1 0 14 7 7 0 0 1 0-14z' fill='%234C3030'/%3E%3Cpath d='M851 695c62 0 114 44 126 103a129 129 0 0 1-253 0l-1 3c11-60 63-105 125-106zm129 126v3zm0-2v1zm-1-6a130 130 0 0 1 1 2zm0-3v2zm-257-3zm256-3zm-255 0-1 2 1-2zm255-3a129 129 0 0 1-1-3zm-255 0v2-2zm254-2zm-256 23a131 131 0 0 1 0 2z' fill='%23FFF'/%3E%3Cpath d='M851 902c62 0 114-44 126-104a130 130 0 1 1-253 0c12 60 64 104 127 104z' fill='%23F9E5E5'/%3E%3Cpath d='M851 688a136 136 0 1 1-137 136 7 7 0 1 1 14 0 122 122 0 1 0 9-45 7 7 0 1 1-13-6c20-51 70-85 127-85zM724 791a7 7 0 1 1 0 14 7 7 0 0 1 0-14z' fill='%234C3030'/%3E%3C/svg%3E");
 }
 {% endstyle %}
 
 <div
-  data-subsection
-  data-section-id="{{ block.id }}"
+  data-section-id="{{ section.id }}"
   data-section-type="video-section"
-  class="video-parent-section hero hero--{{ block.id }} hero--{{  block.settings.section_height }} hero--mobile--{{ block.settings.mobile_height }}"
+  class="video-parent-section hero hero--{{ section.id }} hero--{{ section.settings.section_height }} hero--mobile--{{ section.settings.mobile_height }}"
   data-aos="hero__animation">
 
-  <div class="hero__media hero__media--{{ block.id }}">
+  <div class="hero__media hero__media--{{ section.id }}">
 
-    {% if block.settings.video_url contains 'youtube.com/watch' %}
-      {%- assign video_id = block.settings.video_url | split: 'v=' -%}
+    {% if section.settings.video_url contains 'youtube.com/watch' %}
+      {%- assign video_id = section.settings.video_url | split: 'v=' -%}
       {%- assign video_id = video_id[1] | split: '&' | first -%}
       <div
-        id="YouTubeVideo-{{ block.id }}"
+        id="YouTubeVideo-{{ section.id }}"
         data-video-id="{{ video_id }}"></div>
     {% endif %}
 
-    {% if block.settings.video_url contains 'youtu.be/' %}
-      {%- assign video_id = block.settings.video_url | split: '.be/' -%}
+    {% if section.settings.video_url contains 'youtu.be/' %}
+      {%- assign video_id = section.settings.video_url | split: '.be/' -%}
       {%- assign video_id = video_id[1] | split: '&' | first -%}
       <div
-        id="YouTubeVideo-{{ block.id }}"
+        id="YouTubeVideo-{{ section.id }}"
         data-video-id="{{ video_id }}"></div>
     {% endif %}
 
-    {% if block.settings.video_url contains 'vimeo.com' %}
-      {%- assign video_id = block.settings.video_url | split: '.com/' -%}
+    {% if section.settings.video_url contains 'vimeo.com' %}
+      {%- assign video_id = section.settings.video_url | split: '.com/' -%}
       {%- assign video_id = video_id[1] | split: '/' | first -%}
       <div
-        id="Vimeo-{{ block.id }}"
+        id="Vimeo-{{ section.id }}"
         data-video-id="{{ video_id }}"></div>
     {% endif %}
 
-    {% if block.settings.video_url contains '.mp4' or block.settings.video_url contains '.MP4' %}
+    {% if section.settings.video_url contains '.mp4' or section.settings.video_url contains '.MP4' %}
       <video
-        id="Mp4Video-{{ block.id }}"
-        src="{{ block.settings.video_url }}"
+        id="Mp4Video-{{ section.id }}"
+        src="{{ section.settings.video_url }}"
         loop muted playsinline autoplay></video>
     {% endif %}
 
@@ -53,33 +57,33 @@
 
   <div class="hero__text-wrap">
     <div class="page-width">
-      <div class="hero__text-content {{ block.settings.text_align }}">
+      <div class="hero__text-content {{ section.settings.text_align }}">
 
-        {% if block.settings.video_url contains 'vimeo.com' %}
-          <button type="button" id="VimeoTrigger-{{ block.id }}" class="vimeo-mobile-trigger medium-up--hide">
+        {% if section.settings.video_url contains 'vimeo.com' %}
+          <button type="button" id="VimeoTrigger-{{ section.id }}" class="vimeo-mobile-trigger medium-up--hide">
             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-play" viewBox="18.24 17.35 24.52 28.3"><path fill="#323232" d="M22.1 19.151v25.5l20.4-13.489-20.4-12.011z"/></svg>
           </button>
         {% endif %}
 
-        {% unless block.settings.title == blank %}
+        {% unless section.settings.title == blank %}
           <h2 class="h1 hero__title">
             <div class="animation-cropper"><div class="animation-contents">
-            {{ block.settings.title | newline_to_br }}
+            {{ section.settings.title | newline_to_br }}
             </div></div>
           </h2>
         {% endunless %}
-        {% if block.settings.subheading or block.settings.link %}
-          {% unless block.settings.subheading == blank %}
+        {% if section.settings.subheading or section.settings.link %}
+          {% unless section.settings.subheading == blank %}
             <div class="hero__subtitle">
               <div class="animation-cropper"><div class="animation-contents">
-                {{ block.settings.subheading | escape }}
+                {{ section.settings.subheading | escape }}
               </div></div>
             </div>
           {% endunless %}
-          {% if block.settings.link_text != blank %}
-            {%- assign link_href = block.settings.link -%}
-            {% if block.settings.link == blank %}
-              {%- assign link_href = block.settings.video_url -%}
+          {% if section.settings.link_text != blank %}
+            {%- assign link_href = section.settings.link -%}
+            {% if section.settings.link == blank %}
+              {%- assign link_href = section.settings.video_url -%}
             {% endif %}
 
             {%- assign youtube_video_link = false -%}
@@ -90,11 +94,11 @@
             <div class="hero__link">
               <div class="animation-cropper">
                 <div class="animation-contents">
-                  <a href="{{ link_href }}" class="btn btn--small btn--inverse js-no-transition{% if youtube_video_link %} btn--no-animate{% endif %}">
+                  <a href="{{ link_href }}" class="btn btn--small btn--inverse{% if youtube_video_link %} btn--no-animate{% endif %}">
                     {%- if youtube_video_link -%}
                       <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-play" viewBox="18.24 17.35 24.52 28.3"><path fill="#323232" d="M22.1 19.151v25.5l20.4-13.489-20.4-12.011z"/></svg>
                     {%- endif -%}
-                    {{ block.settings.link_text }}
+                    {{ section.settings.link_text }}
                   </a>
                 </div>
               </div>
@@ -105,4 +109,150 @@
       </div>
     </div>
   </div>
+
 </div>
+
+{% schema %}
+  {
+    "name": "Video hero",
+    "class": "index-section--hero",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Heading",
+        "default": "Bring your\nbrand to life."
+      },
+      {
+        "type": "range",
+        "id": "title_size",
+        "label": "Heading text size",
+        "default": 80,
+        "min": 40,
+        "max": 100,
+        "unit": "px"
+      },
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading",
+        "default": "Seamless hero videos"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Button text",
+        "default": "Optional button"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button link",
+        "info": "Links to YouTube videos will be opened in a video player"
+      },
+      {
+        "type": "select",
+        "id": "text_align",
+        "label": "Text alignment",
+        "default": "vertical-center horizontal-center",
+        "options": [
+          {
+            "value": "vertical-center horizontal-left",
+            "label": "Center left"
+          },
+          {
+            "value": "vertical-center horizontal-center",
+            "label": "Center"
+          },
+          {
+            "value": "vertical-center horizontal-right",
+            "label": "Center right"
+          },
+          {
+            "value": "vertical-bottom horizontal-left",
+            "label": "Bottom left"
+          },
+          {
+            "value": "vertical-bottom horizontal-center",
+            "label": "Bottom center"
+          },
+          {
+            "value": "vertical-bottom horizontal-right",
+            "label": "Bottom right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "video_url",
+        "label": "Background video link",
+        "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "info": "Supports YouTube, .MP4 and Vimeo. Not all features supported by Vimeo. [Learn more](https://archetypethemes.co/blogs/motion/how-do-i-add-background-videos)"
+      },
+      {
+        "type": "select",
+        "id": "section_height",
+        "label": "Desktop height",
+        "default": "650px",
+        "options": [
+          {
+            "label": "450px",
+            "value": "450px"
+          },
+          {
+            "label": "550px",
+            "value": "550px"
+          },
+          {
+            "label": "650px",
+            "value": "650px"
+          },
+          {
+            "label": "750px",
+            "value": "750px"
+          },
+          {
+            "label": "Full screen",
+            "value": "100vh"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "mobile_height",
+        "label": "Mobile height",
+        "default": "auto",
+        "options": [
+          {
+            "label": "Auto",
+            "value": "auto"
+          },
+          {
+            "label": "250px",
+            "value": "250px"
+          },
+          {
+            "label": "300px",
+            "value": "300px"
+          },
+          {
+            "label": "400px",
+            "value": "400px"
+          },
+          {
+            "label": "500px",
+            "value": "500px"
+          },
+          {
+            "label": "Full screen",
+            "value": "100vh"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Video hero",
+      "category": "Video"
+    }]
+  }
+{% endschema %}

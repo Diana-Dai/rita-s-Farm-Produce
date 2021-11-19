@@ -298,7 +298,7 @@
       "unavailable": "Unavailable",
       "quantity": "Quantity",
       "add_to_cart": "Add to cart",
-      "preorder": "Pre-order",
+      "preorder": "Pre-order Now",
       "include_taxes": "Tax included.",
       "shipping_policy_html": "<a href='{{ link }}'>Shipping<\/a> calculated at checkout.",
       "will_not_ship_until": "Will not ship until {{ date }}",

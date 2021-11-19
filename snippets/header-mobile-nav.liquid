@@ -253,7 +253,7 @@ const createNavigationList = function (target, cls) {
   const container = $('.mobile-local-navigation__category-flyout');
   const wrapper = $(`<div class="mobile-local-navigation__flyout-content ${cls}"></div>`);
   const mainCategoryTags = $(target);
-  console.log(mainCategoryTags);
+  // console.log(mainCategoryTags);
   mainCategoryTags.each((index, item)=>{
     const node = $(item).clone();
     node.attr('class', 'mobile-local-navigation__flyout-row');

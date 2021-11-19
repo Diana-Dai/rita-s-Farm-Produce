@@ -1381,7 +1381,7 @@ lazySizesConfig.expFactor = 4;
         /*if (openDrawer === true) {
           //this.drawer.open(false, returnFocusEl);
         }*/
-        console.log(cart);
+        // console.log(cart);
         var cartcount = parseInt($('.cart_count').text());
         //alert(cart.items.length);
         $('.cart_count').text(cart.item_count);
@@ -6097,7 +6097,7 @@ $(document).on('click','.rqtyup',function(){
       console.log('minus');
       }
     }
-  	console.log(inpval);
+  	// console.log(inpval);
   	$('[data-pid="'+secid+'"]').val(parseInt(inpval)).change();
   	$('.vu'+secid).val(parseInt(inpval)).change();
   	
@@ -6129,15 +6129,42 @@ $(document).on('click','.rchange' , function(){
 $(document).on('click','.d_btncart' , function(e){
   //alert();
   var id = $(this).attr('data-id');
-  $.ajax({
+  function getProperty(id) {
+    var productSection = $(`#ProductSection-${id}`);
+    if(productSection.find('input[name="properties[Note]"]').length>0){
+      var input = productSection.find('input[name="properties[Note]"]');
+      return [input.attr('id') , input.val()];
+    }
+    return []
+  }
+  var property =  getProperty(id);
+  console.log(property);
+  if(property.length > 0){
+      $.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      dataType: 'json',
+      data: {id:id,quantity:1,
+      properties: {
+          'Note': 'Pre-Order item'
+        }
+      },
+      success: function(){
+        $('body').trigger('added.ajaxProduct', this);
+      }
+    });
+  }else{
+    $.ajax({
     type: 'POST',
     url: '/cart/add.js',
     dataType: 'json',
     data: {id:id,quantity:1},
     success: function(){
-    	$('body').trigger('added.ajaxProduct', this);
+      $('body').trigger('added.ajaxProduct', this);
     }
   });
+  }
+
   //$(this).parent('form').submit();
   $('body').trigger('added.ajaxProduct', this);
   $('body').trigger('added.ajaxProduct', this);

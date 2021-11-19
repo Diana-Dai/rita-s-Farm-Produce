@@ -59,10 +59,14 @@
                 collection_after_heart_clr: '#fc0303'
             }
         };
+        if(Flits.wishlistButton){
         var wishlitsLocalHandles = Flits.getLocalStorage(Flits.wishlistButton.settings.wishlistHandle);
+        }
         if (wishlitsLocalHandles) {
+        var wishlitsLocalHandles = Flits.getLocalStorage(Flits.wishlistButton.settings.wishlistHandle);
+
           var wishlitsLocalHandlesArray = wishlitsLocalHandles.split(',');
-          console.log(wishlitsLocalHandlesArray.length);
+          // console.log(wishlitsLocalHandlesArray.length);
           for (var i = 0; i < wishlitsLocalHandlesArray.length; i++) {
             var s = Flits("*[data-flits-product-handle='" + wishlitsLocalHandlesArray[i] + "']");	
             var wishlitsLocalHandlesnew = Flits.getLocalStorage(Flits.wishlistButton.settings.wishlistHandle);

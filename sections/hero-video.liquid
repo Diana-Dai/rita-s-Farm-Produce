@@ -7,8 +7,9 @@
     font-size: {{ section.settings.title_size }}px;
   }
 }
-{% endstyle %}
 
+
+{% endstyle %}
 <div
   data-section-id="{{ section.id }}"
   data-section-type="video-section"
@@ -62,9 +63,15 @@
 
         {% unless section.settings.title == blank %}
           <h2 class="h1 hero__title">
-            <div class="animation-cropper"><div class="animation-contents">
+            <div class="animation-cropper">
+              <div class="animation-contents">
             {{ section.settings.title | newline_to_br }}
-            </div></div>
+                <span class="santa-hat">
+                  <img width='100px' height="100px" src="{{ 'santa-hat.png' | asset_img_url: '100x' }}">
+                </span>
+              </div>
+
+          </div>
           </h2>
         {% endunless %}
         {% if section.settings.subheading or section.settings.link %}

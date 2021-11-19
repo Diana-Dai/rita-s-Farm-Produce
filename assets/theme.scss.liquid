@@ -2842,11 +2842,17 @@ $color-blankstate-background: #f4f4f4;
 /*================ Animations ================*/
 
 // Utilities
-
+.santa-hat{
+  position: absolute;
+  right: -46px;
+  top: -20px;
+  transform: rotate(24deg);
+}
 .animation-cropper {
-  overflow: hidden;
+  // overflow: hidden;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  position: relative;
 }
 
 @for $i from 1 to 20 {
@@ -5488,6 +5494,8 @@ $color-blankstate-background: #f4f4f4;
     border-color: $colorDrawerBorder;
     padding-top: 2px;
     padding-bottom: 2px;
+    font-size: 1rem;
+	  bottom: -7px;
   }
 
   .js-qty__adjust {
@@ -7242,7 +7250,6 @@ $z-index-hero-text: 4;
     .hero__title .animation-contents {
       animation: $animate_sections_text_style 0.8s cubic-bezier(0.26, 0.54, 0.32, 1) 0.3s forwards;
     }
-
     .hero__subtitle .animation-contents {
       animation: $animate_sections_text_style 1s cubic-bezier(0.26, 0.54, 0.32, 1) 0.7s forwards;
     }
@@ -10615,4 +10622,12 @@ iframe.zoid-component-frame {
     margin-bottom: 40px;
   }
   
+}
+
+.error{
+  color: #c00;
+  padding: 0;
+  margin: 10px 0;
+  font-size: .9em;
+  text-align: left;
 }

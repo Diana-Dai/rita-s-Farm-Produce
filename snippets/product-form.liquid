@@ -30,8 +30,15 @@
     {% endfor %}
   </select>
 
-
-
+  <!-- Add a Preorder Property -->
+  <!-- DONT FORGET TO FILTER THE TEMPLATE -->
+  {% if template == 'product.preorder' %}
+  <div class="line-item-property__field">
+    <label>Note:Pre-order item
+      <input type="radio" value="Pre-order item" name="properties[Note]" id="Note" checked style="pointer-events: none; display: none;">
+    </label>
+  </div>
+  {% endif %}
 
   {% if settings.quantity_enable %}
     <div class="product__quantity product__quantity--{{ settings.variant_type }}">
@@ -55,11 +62,11 @@
       name="add"
       id="AddToCart-{{ section_id }}"
       class="{% if enable_dynamic_buttons %}btn--tertiary{% else %}btn{% endif %} btn--full btn--no-animate add-to-cart"
-      {% unless current_variant.available %} disabled="disabled"{% endunless %}>
+      {% unless current_variant.available %} disabled="disabled"{% endunless %}{% if template == 'product.preorder' %} style="background-color: #f44b4b; text-transform:uppercase;" {% endif %}>
       <span id="AddToCartText-{{ section_id }}">
         {% if current_variant.available %}
           {% if template == 'product.preorder' %}
-            {{ 'products.product.preorder' | t }}
+          {{ 'products.product.preorder' | t }}
           {% else %}
             {{ 'products.product.add_to_cart' | t }}
           {% endif %}
@@ -68,6 +75,9 @@
         {% endif %}
       </span>
     </button>
+    {% if template == 'product.preorder' %}
+    <p style="text-align:center">Deliveries start on 17th of December</p>
+    {% endif %}
 
     {% if enable_dynamic_buttons %}
       {{ form | payment_button }}
