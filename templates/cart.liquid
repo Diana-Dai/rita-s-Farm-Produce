@@ -1,4 +1,8 @@
-
+<style>
+  #storePickupApp ~  #zapiet-delivery-validator{
+  display:none
+}
+  </style>
 <!-- Begin ReCharge code -->
 {% include 'subscription-cart-footer' %}
 <!-- End ReCharge code -->
@@ -252,121 +256,5 @@
   </div>
 </div>
 
-
-<script defer>
-// PREORDER
-// Update the delivery settings
-$(document).ready(function () {
-  class PreOrder{
-    constructor(){
-      this.orderType = this.checkPreOrderItem();
-      this.year = (new Date()).getFullYear();
-      this.deliveryStartDate = new Date(`${this.year}-12-17`);
-      this.deliveryEndDate = new Date(`${this.year}-12-23`);
-      this.deliveryStartDateStamp = this.deliveryStartDate.getTime();
-      this.deliveryEndDateStamp = this.deliveryEndDate.getTime();
-    }
-    checkPreOrderItem() {
-      let preOder = 0,
-      normalOrder = 0,
-      orderAmount = 0;
-      $('.grid__item.three-quarters').each(function () {
-        orderAmount++;
-        let isPreordered = $(this).find(".Note");
-        if(isPreordered.length === 0){
-          normalOrder++
-          return;
-        }
-        preOder++
-      })
-      if(preOder === orderAmount){
-        return 'preorder';
-      }else if(normalOrder === orderAmount){
-        return 'normal'
-      }else{
-        return 'mix'
-      }
-    }
-    init(){
-      // preorder && mixorder
-      // mixorder ====> popup
-      if (this.orderType !== 'normal') {
-        this.watchDatePicker();
-      }
-    }
-    watchDatePicker(){
-      if($('.picker__holder').length === 0){
-        var that = this;
-        // console.log(this);
-        var interval = setInterval(() => {
-          if($('.picker__holder').length > 0){
-            clearInterval(interval);
-            that.watchInputValue();
-          }
-        }, 500);
-      }
-    }
-    disableCheckout(){
-      $('.cart__checkout').attr('disabled','disabled')
-    }
-    ableCheckout(){
-      clearInterval(this.interval4Btn);
-      console.log(this.interval4Btn);
-      $('.cart__checkout').attr('disabled',false);
-    }
-    watchInputValue(){
-      var that = this, selectedDateStamp;
-      var inputwatcher = setInterval(() => {
-        if ( $('input[name="zpDate"]').length>0) {
-          var selectedDate = $('input[name="zpDate"]').attr('value');
-          if (selectedDate !== 'undefined' && selectedDate) {
-            var newStamp = (new Date(selectedDate)).getTime();
-            if(newStamp !== selectedDateStamp){
-              selectedDateStamp = newStamp;
-              var readyToCheckOut = that.checkDeliveryDate(selectedDateStamp);
-              if(readyToCheckOut){
-                that.getready();
-              }else{
-                that.keepCheckOutDisabled();
-                that.addwarning();
-              }
-            }
-          }
-        }
-        }, 500);
-    }
-    keepCheckOutDisabled(){
-      var that = this;
-      this.interval4Btn = setInterval(() => {
-          if(!$('.cart__checkout').attr('disabled')){
-            that.disableCheckout();
-          }
-        }, 500);
-    }
-    addwarning(){
-      console.log($('.cart__checkout-wrapper').find('#wrongDate'));
-      if($('.cart__checkout-wrapper').find('#wrongDate').length>0){
-        return;
-      }
-      var newNode = $('<p id="wrongDate" class="error">Please choose a date between 17th to 23th of December for pre-order products</p>')
-      newNode.insertAfter($('#storePickupApp'));
-    }
-    removewarning(){
-      $('#wrongDate').remove();
-    }
-    checkDeliveryDate(selectedDateStamp){
-      console.log(selectedDateStamp, this.deliveryEndDateStamp, this.deliveryStartDateStamp);
-      return selectedDateStamp < this.deliveryEndDateStamp && selectedDateStamp > this.deliveryStartDateStamp;
-    }
-    getready(){
-      this.ableCheckout();
-      this.removewarning();
-    }
-  }
-  const preOrder = new PreOrder();
-  preOrder.init()
-});
-
-</script>
 <script src="https://cdn.pagefly.io/static/assets/pf-custom-shopify-cart.min.js" defer></script>
 

@@ -1,0 +1,51 @@
+<style>
+  .announcement.christmas{
+    background-color: #B51A42;
+    height: 50px;
+    /* max-height:50px !important; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible !important;
+  }
+  .announcement.christmas .announcement__text{
+    padding: 20px 10px;
+  }
+  .announcement__link{
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background-color: #28A422;
+    margin-left: 10px;
+  }
+  .santa-sock{
+    position: absolute;
+    left: -20px;
+    top: 30px;
+    width: 150px;
+    pointer-events: none;
+  }
+  .announcement--closed .santa-sock{
+    display: none;
+  }
+  .santa-sock img{
+    width:100%;
+    height: auto;
+  }
+</style>
+<div class="announcement christmas{% if section.settings.announcement_closable %} announcement--closeable{% endif %}">
+  <span class="announcement__text{% unless sections.settings.announcement_closable %} announcement__text--open{% endunless %}" data-text="{{ section.settings.announcement_text | strip_html | handle }}">
+    CHRISTMAS PRE-ORDERS NOW OPEN  
+    <a href="/collections/christmas" class="announcement__link">
+      <span>Shop Now!</span></a>
+  </span>
+  {% if section.settings.announcement_closable %}
+  <button type="button" class="text-link announcement__close">
+    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 64 64"><path d="M19 17.61l27.12 27.13m0-27.12L19 44.74"/></svg>
+    <span class="icon__fallback-text">{{ 'general.accessibility.close' | t | json }}</span>
+  </button>
+{% endif %}
+<span class="santa-sock desktop-only">
+  <img width='100px' height="100px" src="{{ 'santa-sock.png' | asset_img_url: '300x' }}">
+</span>
+</div>

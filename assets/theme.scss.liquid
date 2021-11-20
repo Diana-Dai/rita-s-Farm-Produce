@@ -976,12 +976,15 @@ body {
     color:black;
     width: 420px;
     height: 180px;
-    margin-top: 179px;
-    margin-left: 435px;
+    // margin-top: 179px;
+    // margin-left: 435px;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%,-50%);
      @include media-query($small) {
     width: 340px;
     height: 160px;
-    margin-top: 179px;
+    // margin-top: 179px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -2845,8 +2848,20 @@ $color-blankstate-background: #f4f4f4;
 .santa-hat{
   position: absolute;
   right: -46px;
-  top: -20px;
-  transform: rotate(24deg);
+  top: -30px;
+  transform: rotate(20deg);
+  width: 120px;
+}
+.santa-hat img{
+  width: 100%;
+  height: auto;
+}
+@media screen and(max-width:784px){
+  .santa-hat{
+    width: 60px;
+    right: -30px;
+    top: -15px;
+  }
 }
 .animation-cropper {
   // overflow: hidden;
@@ -10630,4 +10645,47 @@ iframe.zoid-component-frame {
   margin: 10px 0;
   font-size: .9em;
   text-align: left;
+}
+
+#preorder-warning-popup{
+  position: fixed;
+  width: 600px;
+  top: 50%;
+  left: 50%;
+  padding: 2rem 1.5rem;
+  background: #fff;
+  border: solid 1px;
+  border-radius: 5px;
+  z-index: 999;
+  box-shadow:
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  100px 100px 80px rgba(0, 0, 0, 0.07);
+  animation:slideIn 1s forwards;
+}
+@keyframes slideIn{
+  from{
+    transform:translate(-50%,1500px);
+    opacity:0;
+  }
+  to{
+    opacity:1;
+    transform: translate(-50%,-50%);
+  }
+}
+@media screen and (max-width:784px){
+  #preorder-warning-popup{
+    width: 380px;
+  }
+}
+#preorder-warning-popup h2{
+  font-weight:normal !important;
+  margin-bottom: 10px;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+#preorder-warning-popup__close{
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
 }
