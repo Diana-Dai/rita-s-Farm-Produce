@@ -27,9 +27,11 @@
 //Remove Below Condition if you wish to show it on Product page also 
         if (Flits.request.page_type == 'collection' || Flits.request.page_type == 'index') {
           let collectionBtn = Flits('.flits-wishlist-colection');
+          if(Flits.wishlistButton){
           parseInt(Flits.wishlistButton.settings.isCountEnable) && Flits(collectionBtn).find('.flits-wls-count-btn').css('display', 'flex'),
             Flits(collectionBtn).show(),
             Flits('.flits-wishlist-colection:not(.flits-template)').parent().attr('data-flits', 'wishlist-collection-parent');
+          }
         }
       }
       function wishlistLocalData() {

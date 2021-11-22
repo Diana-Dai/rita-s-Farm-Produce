@@ -32,6 +32,7 @@
     width:100%;
     height: auto;
   }
+
 </style>
 <div class="announcement christmas{% if section.settings.announcement_closable %} announcement--closeable{% endif %}">
   <span class="announcement__text{% unless sections.settings.announcement_closable %} announcement__text--open{% endunless %}" data-text="{{ section.settings.announcement_text | strip_html | handle }}">

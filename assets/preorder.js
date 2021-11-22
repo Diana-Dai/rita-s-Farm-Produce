@@ -1,4 +1,4 @@
-// PREORDER
+// THIS FUNCTIONS ARE FOR PREORDER
 // Update the delivery settings
 $(document).ready(function () {
   class PreOrder{
@@ -61,7 +61,7 @@ $(document).ready(function () {
         $('#preorder-warning-popup').show();
         return;
       }else{
-        var newNode = $("<div id='preorder-warning-popup'><div><h2>Warning: you have pre-order and in-stock items in the same cart</h2><p>Your cart items won't be shipped before pre-order items are available. (Delivery date for pre-order items <strong>starts on 17th of December</strong>.)<br>To get your in-stock iteams delivered earlier, please make two separate orders - one for your pre-order items and one for your in-stock items.</p></div><a href='#' id='preorder-warning-popup__close' class='preorder-warning-popup__close'><svg class='preorder-warning-popup__close' width='24' height='24' xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd' clip-rule='evenodd'><path d='M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 10.293l5.293-5.293.707.707-5.293 5.293 5.293 5.293-.707.707-5.293-5.293-5.293 5.293-.707-.707 5.293-5.293-5.293-5.293.707-.707 5.293 5.293z'></path></svg></a></div>")
+        var newNode = $("<div id='preorder-warning-popup'><div><h2>Warning: you have pre-order and in-stock items in the same cart</h2><p>Your cart items won't be shipped before pre-order items are available. (Delivery date for pre-order items <strong>starts on 17th of December</strong>.)<br>To get your in-stock items delivered earlier, please make two separate orders - one for your pre-order items and one for your in-stock items.</p></div><a href='#' id='preorder-warning-popup__close' class='preorder-warning-popup__close'><svg class='preorder-warning-popup__close' width='24' height='24' xmlns='http://www.w3.org/2000/svg' fill-rule='evenodd' clip-rule='evenodd'><path d='M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 10.293l5.293-5.293.707.707-5.293 5.293 5.293 5.293-.707.707-5.293-5.293-5.293 5.293-.707-.707 5.293-5.293-5.293-5.293.707-.707 5.293 5.293z'></path></svg></a></div>")
         console.log(newNode);
         setTimeout(() => {
           $('body').append(newNode);
@@ -158,17 +158,29 @@ $(document).ready(function () {
       this.removewarning();
     }
   }
+  function initPreOrderFuns() {
+      // Check if the user is on the cart page or opened the cart drawer
+    if(window.location.href.indexOf('cart') > 0){
+      const preOrder = new PreOrder('cart');
+      preOrder.init();    
+    }else{
+      observeDrawer();
+    }
+  }
 
-  // Check if the user is on the cart page or opened the cart drawer
-  if(window.location.href.indexOf('cart') > 0){
-    const preOrder = new PreOrder('cart');
-    preOrder.init();    
-  }else{
-    $('.js-drawer-open-cart').click(function () {
-      console.log('clicked')
+  function observeDrawer() {
+    function initPreOrder() {
+      observer.disconnect();
       const preOrder = new PreOrder('cart-drawer');
       preOrder.init();
-    })
-
+    }
+    var observer = new MutationObserver(initPreOrder);
+    let config = {
+    attributes: true, 
+    };
+    observer.observe(document.querySelector('#CartDrawer'),config)
   }
+
+  initPreOrderFuns();
+
 });
