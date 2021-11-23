@@ -1,64 +1,68 @@
 <style>
-  .christmas-banner__image img{
-  width:100%;
-  height:auto;
-}
-.christmas-banner__details h4{
+  .christmas-banner__image img {
+    width: 100%;
+    height: auto;
+  }
+  .christmas-banner h3 {
+    font-size: 2rem;
+  }
+  .christmas-banner__details h4 {
     margin-bottom: 10px;
   }
-.christmas-banner__details p{
-    line-height:1.2;
+  .christmas-banner__details p {
+    line-height: 1.2;
     margin-bottom: 40px;
-    text-align:center;
-}
-@media screen and (min-width:767px){
-  .christmas-banner__content{
-    display: flex;
   }
-  .christmas-banner h3{
-    letter-spacing: 1px;
-    font-size:3rem !important;
-  }    
-  .christmas-banner__image{
-    width:50%
+  .christmas-banner__details {
+    padding: 1rem 0;
   }
+  @media screen and (min-width: 767px) {
+    .christmas-banner__content {
+      display: flex;
+    }
+    .christmas-banner h3 {
+      letter-spacing: 1px;
+      font-size: 3rem !important;
+    }
+    .christmas-banner__image {
+      width: 50%;
+    }
 
-  .christmas-banner__details{
-    width: 50%;
-    padding: 0 6.5rem;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+    .christmas-banner__details {
+      width: 50%;
+      padding: 0 6.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .christmas-banner__details p {
+      text-align: center;
+    }
   }
-
-
-}
-
-
 </style>
 <div class="christmas-banner page-width">
   <h3>A farm to table Christmas</h3>
   <div class="christmas-banner__content">
     <a class="christmas-banner__image" href="collections/christmas">
-      <img loading="lazy" width='500' height="400" src="{{ 'christmas-image.jpeg' | asset_img_url: '500x' }}"  alt="christmas banner image">
+      <img
+        loading="lazy"
+        width="500"
+        height="400"
+        src="{{ 'christmas-image.jpeg' | asset_img_url: '500x' }}"
+        alt="christmas banner image"
+      />
     </a>
     <div class="christmas-banner__details">
       <h4 class="h3">Christmas Preorder</h4>
-        <p>A story to tell with each dish, with a focus on farmers and local producers</p>
-        <a class="btn" href="collections/christmas"><span>Shop Now</span></a>
-      </div>
+      <p>
+        A story to tell with each dish, with a focus on farmers and local
+        producers
+      </p>
+      <a class="btn" href="collections/christmas"><span>Shop Now</span></a>
+    </div>
   </div>
 </div>
 
-{% schema %}
-  {
-    "name": "Preorder Banner",
-    "settings": [],
-    "presets": [
-      {
-        "name":"Preorder Banner"
-      }
-   ]
-  }
-{% endschema %}
+{% schema %} { "name": "Preorder Banner", "settings": [], "presets": [ {
+"name":"Preorder Banner" } ] } {% endschema %}
