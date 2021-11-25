@@ -1303,7 +1303,7 @@ lazySizesConfig.expFactor = 4;
   
             if (product.properties !== null) {
               $.each(product.properties, function(key, value) {
-                if (key.charAt(0) === '_' || !value) {
+                if ((key.charAt(0) === '_' && key != '_is_db_preorder') || !value) {
                    delete product.properties[key];
                  }
               });
@@ -6076,7 +6076,9 @@ $(document).on('click','.add-to-cart',function(e){
 	var secid = $(this).attr('data-id');
   	//$(this).hide();
     $('.AddToCart-'+secid).hide();
-    $(this).parent().parent().parent().addClass('product-is-in-basket');
+    $(this).closest('.grid-product-visuals').addClass('product-is-in-basket');
+
+    // $(this).parent().parent().parent().addClass('product-is-in-basket');
   	//$('#Quantity-'+secid).val(1);
     $('.RQuantity-'+secid).val(parseInt(1));
   	$('.RProductSectionQty-'+secid).show();
@@ -6088,6 +6090,7 @@ $(document).on('click','.rqtyup',function(){
 	var secid = $(this).attr('data-id');
   	//var inpval =  $('.RQuantity-'+secid).val();
   	var inpval = $(this).parent('div').find('input').val();
+    console.log(inpval)
   	$(this).find('svg').hide();
   	$(this).find('i').show();
 	//alert(inpval);
@@ -6102,12 +6105,22 @@ $(document).on('click','.rqtyup',function(){
   	
     if(inpval == 0){
 		$('.RProductSectionQty-'+secid).hide();
+    //Disable add to cart
     $('.AddToCart-'+secid).show();
-    $('.AddToCart-'+secid).parent().parent().parent().removeClass('product-is-in-basket');
+    $('.AddToCart-'+secid).attr('disabled',true);
+    $('.AddToCart-'+secid).find('i').show();
+    $('.AddToCart-'+secid).find('.product-tile__quick-add-plus').hide();
+    $('.AddToCart-'+secid).closest('.grid-product-visuals').removeClass('product-is-in-basket');
+
+    // $('.AddToCart-'+secid).parent().parent().parent().removeClass('product-is-in-basket');
     }
   	setTimeout(function(){ 
          $('.RQuantity-'+secid).val(parseInt($('[data-pid="'+secid+'"]').val()));
-  		 $('.rqtyup').removeAttr('disabled');
+         $('.AddToCart-'+secid).removeAttr('disabled');
+         $('.AddToCart-'+secid).find('i').hide();
+         $('.AddToCart-'+secid).find('.product-tile__quick-add-plus').show();
+
+         $('.rqtyup').removeAttr('disabled');
          $('.rqtyup').find('svg').show();
       	 $('.rqtyup').find('i').hide();
 	}, 2200);
@@ -6122,6 +6135,8 @@ $(document).on('click','.rchange' , function(){
     if(inpval==0){
       $('.RProductSectionQty-'+secid).hide();
       $('.AddToCart-'+secid).show();
+      $('.AddToCart-'+secid).closest('.product-is-in-basket').removeClass('product-is-in-basket');
+      // $('.AddToCart-'+secid).parent().parent().parent().removeClass('product-is-in-basket');
     }
 });
 
