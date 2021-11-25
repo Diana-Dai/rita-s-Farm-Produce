@@ -10647,7 +10647,7 @@ iframe.zoid-component-frame {
   text-align: left;
 }
 
-#preorder-warning-popup{
+.warning-popup{
   position: fixed;
   width: 600px;
   top: 50%;
@@ -10660,7 +10660,7 @@ iframe.zoid-component-frame {
   box-shadow:
   12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
   100px 100px 80px rgba(0, 0, 0, 0.07);
-  animation:slideIn 1s forwards;
+  animation:slideIn 0.6s forwards;
 }
 @keyframes slideIn{
   from{
@@ -10673,19 +10673,22 @@ iframe.zoid-component-frame {
   }
 }
 @media screen and (max-width:784px){
-  #preorder-warning-popup{
+  .warning-popup{
     width: 90%;
   }
 }
-#preorder-warning-popup h2{
+.warning-popup h2{
   font-weight:normal !important;
   margin-bottom: 10px;
   padding: 0 1rem;
   text-align: center;
 }
 
-#preorder-warning-popup__close{
+.warning-popup__close{
   position: absolute;
   top: 0.8rem;
   right: 1rem;
+}
+.shiralee-list p{
+  margin: 10px 0 0 0 !important;
 }

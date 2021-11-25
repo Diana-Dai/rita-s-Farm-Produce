@@ -4,7 +4,7 @@
     {{#items}}
     <div class="ajaxcart__product appear-animation appear-delay-{{animationRow}}">
       <div class="ajaxcart__row">
-        <div class="grid">
+        <div class="grid product" data-vendor='{{vendor}}'>
           <div class="grid__item one-third">
             <a href="{{url}}" class="ajaxcart__product-image"><img src="{{img}}" alt="{{name}}"></a>
           </div>
@@ -17,7 +17,7 @@
               {{#properties}}
                 {{#each this}}
                   {{#if this}}
-                    <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
+                    <span class="ajaxcart__product-meta Note">{{@key}}: {{this}}</span>
                   {{/if}}
                 {{/each}}
               {{/properties}}
