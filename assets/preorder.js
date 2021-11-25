@@ -91,7 +91,7 @@ $(document).ready(function () {
     }
     getSelectedDate(){
       var that = this, selectedDateStamp;
-      var inputwatcher = setInterval(() => {
+      this.inputwatcher = setInterval(() => {
         if ( $('input[name="zpDate"]').length>0) {
           that.disablePickers();
           var selectedDate = $('input[name="zpDate"]').attr('value');
@@ -133,7 +133,6 @@ $(document).ready(function () {
     disablePickers(){
       var that = this;
       this.interval4pickers = setInterval(() => {
-        console.log($(this));
         $('.picker__day').each(function(){
           var dateStamp = $(this).attr('data-pick');
           if(!that.checkDeliveryDate(dateStamp)){
@@ -164,24 +163,44 @@ $(document).ready(function () {
       this.selectedDate = '';
     }
     init(){
+      this.observeCart();
       if(this.hasShiraleeMeat()){
-        this.triggerObserver();
+        this.triggerTheObserver();
       }
+    }
+    observeCart(){
+      var that = this;
+      var observer = new MutationObserver(function () {
+        if(!that.hasShiraleeMeat()){
+          that.ableCheckout();
+        }
+      });
+      let config = {
+        attributes: true, 
+      };
+      observer.observe(document.querySelector('#CartContainer'),config)
     }
     hasShiraleeMeat(){
       var hasShiraleeMeat = false;
       var that = this;
+      this.limitedProducts = [];
       $('.grid.product').each(function (index,item) {
       //  debugger
         if($(item).attr('data-vendor') === 'Shiralee Meat'){
-          that.limitedProducts.push($(item).find('a').text().trim());
+          var productName = $(item).find('a.cart__product-name').text().trim();
+          that.getProductList(productName);
           hasShiraleeMeat = true;
           return;
         }
       })
       return hasShiraleeMeat;
     }
-    triggerObserver(){
+    getProductList(productName){
+      if(this.limitedProducts.indexOf(productName) === -1){
+        this.limitedProducts.push(productName);
+      }
+    }
+    triggerTheObserver(){
       if($('.picker__holder').length === 0){
         var that = this;
         // console.log(this);
@@ -200,7 +219,7 @@ $(document).ready(function () {
           var selectedDate = $('input[name="zpDate"]').attr('value');
           if (selectedDate !== 'undefined' && selectedDate) {
             if (selectedDate !== that.selectedDate) {
-                // var date = 
+                console.log(selectedDate);
                 that.selectedDate = selectedDate;
                 that.validateOrder(selectedDate);
             }
@@ -217,9 +236,11 @@ $(document).ready(function () {
       
       // 57600000 is the stamp difference from today 8am to tomorrow
       if (deliveryStamp - this.todayStamp <= 57600000) {
-        this.keepCheckOutDisabled();
-        this.setPopUp();
-        // that.addwarning();
+        // Check if there's limited products;
+        if (this.limitedProducts.length>=0) {
+          this.keepCheckOutDisabled();
+          this.setPopUp();
+        }
       }else{
         this.ableCheckout();
       }
@@ -237,6 +258,9 @@ $(document).ready(function () {
       $('.cart__checkout').attr('disabled',false);
     }
     setPopUp(){
+      if($('#shiralee-warning-popup')){
+        $('#shiralee-warning-popup').remove();
+      }
       var productHtml = '<div class="shiralee-list"><p>Products:</p><ul>';
       for (let index = 0; index <this.limitedProducts.length; index++) {
         const element = this.limitedProducts[index];
