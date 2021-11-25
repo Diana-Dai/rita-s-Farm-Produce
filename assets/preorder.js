@@ -156,8 +156,8 @@ $(document).ready(function () {
   class OrderLimit{
     constructor(){
       this.limitedProducts = [];
-      // this.todayStamp = (new Date()).getTime();
-      this.todayStamp = (new Date('2021-11-26 8:01')).getTime();
+      this.todayStamp = (new Date()).getTime();
+      // this.todayStamp = (new Date('2021-11-26 8:01')).getTime();
       this.today = (new Date()).getDate();
       this.nowhour = (new Date()).getHours();
       this.selectedDate = '';
@@ -172,8 +172,13 @@ $(document).ready(function () {
       var that = this;
       var observer = new MutationObserver(function () {
         if(!that.hasShiraleeMeat()){
-          that.ableCheckout();
+          that.ableCheckout.apply(that);
+        }else{
+          setTimeout(() => {
+            that.selectedDate ='';
+          }, 1000);
         }
+        console.log(that.limitedProducts,that.hasShiraleeMeat());
       });
       let config = {
         attributes: true, 
@@ -217,9 +222,9 @@ $(document).ready(function () {
       var inputwatcher = setInterval(() => {
         if ( $('input[name="zpDate"]').length>0) {
           var selectedDate = $('input[name="zpDate"]').attr('value');
+          console.log(selectedDate);
           if (selectedDate !== 'undefined' && selectedDate) {
             if (selectedDate !== that.selectedDate) {
-                console.log(selectedDate);
                 that.selectedDate = selectedDate;
                 that.validateOrder(selectedDate);
             }
@@ -237,7 +242,8 @@ $(document).ready(function () {
       // 57600000 is the stamp difference from today 8am to tomorrow
       if (deliveryStamp - this.todayStamp <= 57600000) {
         // Check if there's limited products;
-        if (this.limitedProducts.length>=0) {
+        console.log(this.limitedProducts.length);
+        if (this.limitedProducts.length > 0) {
           this.keepCheckOutDisabled();
           this.setPopUp();
         }
