@@ -101,7 +101,7 @@ $(document).ready(function () {
             var newStamp = (new Date(selectedDate)).getTime();
             if(newStamp !== selectedDateStamp){
               selectedDateStamp = newStamp;
-              var readyToCheckOut = that.checkDeliveryDate(selectedDateStamp);
+              var readyToCheckOut = that.goodDeliveryDate(selectedDateStamp);
               if(readyToCheckOut){
                 that.getready();
                 clearInterval(that.interval4pickers);
@@ -115,7 +115,6 @@ $(document).ready(function () {
         }, 500);
     }
     keepCheckOutDisabled(){
-      var that = this;
       this.interval4Btn = setInterval(() => {
           if(!$('.cart__checkout').attr('disabled')){
             $('.cart__checkout').attr('disabled','disabled');
@@ -138,7 +137,7 @@ $(document).ready(function () {
       var that = this;
         $('.picker__day').each(function(){
           var dateStamp = $(this).attr('data-pick');
-          if(!that.checkDeliveryDate(dateStamp)){
+          if(!that.goodDeliveryDate(dateStamp)){
             if(!$(this).hasClass('picker__day--disabled')){
               $(this).addClass('picker__day--disabled');
             }
@@ -146,7 +145,7 @@ $(document).ready(function () {
         })
       }
     }
-    checkDeliveryDate(selectedDateStamp){
+    goodDeliveryDate(selectedDateStamp){
       return selectedDateStamp < this.deliveryEndDateStamp && selectedDateStamp > this.deliveryStartDateStamp;
     }
     getready(){
@@ -236,7 +235,7 @@ $(document).ready(function () {
         }, 500);
     }
     validateOrder(selectedDate){
-      // Check the order time
+      // Check the time
       // If delivery date is tomorrow
       // And order time is after 8am
       // Then disable check out button and notify the customer to choose another date
@@ -245,7 +244,7 @@ $(document).ready(function () {
       // 57600000 is the stamp difference from today 8am to tomorrow
       if (deliveryStamp - this.todayStamp <= 57600000) {
         // Check if there's limited products;
-        console.log(this.limitedProducts.length);
+        // console.log(this.limitedProducts.length);
         if (this.limitedProducts.length > 0) {
           this.keepCheckOutDisabled();
           this.setPopUp();
