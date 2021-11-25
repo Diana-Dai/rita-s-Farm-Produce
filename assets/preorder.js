@@ -23,7 +23,7 @@ $(document).ready(function () {
 
   class PreOrder{
     constructor(){
-      this.orderType = this.checkPreOrderItem(this.target);
+      this.orderType = this.checkPreOrderItem();
       this.year = (new Date()).getFullYear();
       this.deliveryStartDate = new Date(`${this.year}-12-17`);
       this.deliveryEndDate = new Date(`${this.year}-12-23`);
@@ -31,8 +31,9 @@ $(document).ready(function () {
       this.deliveryEndDateStamp = this.deliveryEndDate.getTime();
     }
     observeCart(){
+      var that = this;
       var observer = new MutationObserver(function () {
-        console.log('changed');
+        that.orderType = that.checkPreOrderItem();
         });
       let config = {
         attributes: true, 
@@ -72,6 +73,7 @@ $(document).ready(function () {
           utils.setPopUp('preorder-warning-popup', 'preorder-warning-popup__close', html);
         }
       }
+      this.observeCart();
     }
     watchDatePicker(){
       if($('.picker__holder').length === 0){
@@ -131,8 +133,9 @@ $(document).ready(function () {
       $('#wrongDate').remove();
     }
     disablePickers(){
+      //Recheck the order type
+      if(this.orderType !== 'normal'){
       var that = this;
-      this.interval4pickers = setInterval(() => {
         $('.picker__day').each(function(){
           var dateStamp = $(this).attr('data-pick');
           if(!that.checkDeliveryDate(dateStamp)){
@@ -141,7 +144,7 @@ $(document).ready(function () {
             }
           }
         })
-      }, 500);
+      }
     }
     checkDeliveryDate(selectedDateStamp){
       return selectedDateStamp < this.deliveryEndDateStamp && selectedDateStamp > this.deliveryStartDateStamp;
